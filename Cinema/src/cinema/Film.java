@@ -3,6 +3,7 @@ package cinema;
 import java.time.Duration;
 
 public class Film {
-	String name;
+	String title;
+	String description;
 	Duration length;
 }
