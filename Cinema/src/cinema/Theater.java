@@ -121,12 +121,36 @@ public class Theater {
 		return strings.toArray(new String[0]);
 	}
 	
-	/** Book a seat for a specific viewing. **/
+	/** Book a seat for a specific viewing.
+	 * @param start -The start time of the viewing.
+	 * @param seatId -The seat number.
+	 * @param ticketId -The ID of the ticket. 
+	 * @return True if the seat was available, else false.**/
 	public boolean bookSeat(LocalDateTime start, int seatId, String ticketId) {
+		Viewing viewing = new Viewing(null, start, seatRows * seatColumns);
+		
+		for(Viewing view : viewingList) {
+			if(view.compareTo(viewing) == 0)
+				return view.bookSeat(seatId, ticketId);
+		}
+		
 		return false;
 	}
 	
+	/** Book a seat for a specific viewing.
+	 * @param start -The start time of the viewing.
+	 * @param seatId -The seat number.
+	 * @param seatCount -The amount of adjacent seats wanted.
+	 * @param ticketId -The ID of the ticket. 
+	 * @return True if the seat was available, else false.**/
 	public boolean bookSeat(LocalDateTime start, int seatId, int seatCount, String ticketId) {
+		Viewing viewing = new Viewing(null, start, seatRows * seatColumns);
+		
+		for(Viewing view : viewingList) {
+			if(view.compareTo(viewing) == 0)
+				return view.bookSeats(seatId, ticketId, seatCount);
+		}
+		
 		return false;
 	}
 }
