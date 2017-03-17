@@ -39,8 +39,13 @@ public class Viewing implements Comparable<Viewing> {
 		}
 	}
 	
-	public void bookSeat(int seat, String ticketID) {
+	public boolean bookSeat(int seat, String ticketID) {
 		seats[seat] = ticketID;
+		return true;
+	}
+	
+	public boolean bookSeats(int seat, String ticketID, int seatCount) {
+		return false;
 	}
 
 	Film getFilm() {
