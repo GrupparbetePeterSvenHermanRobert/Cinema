@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 /** This class represents a single theater within a cinema.
  * @author Gustaf Peter Hultgren
- * @version 0.2 **/
+ * @version 0.3 **/
 public class Theater {
 	/** The identification number of this theater. **/
 	private int theaterId;
@@ -33,6 +33,10 @@ public class Theater {
 	 * @param data -An array of the data required to create a new theater. **/
 	public Theater(String data) {
 		viewingList = new TreeSet<Viewing>();
+		int index = data.indexOf(':');
+		String substring = data.substring(index + 1);
+		
+		//"theater:" + getId() + "," + getSeatRows() + "," + getSeatColumns()
 		// TODO process the data and create the object.
 	}
 	
