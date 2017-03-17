@@ -26,7 +26,7 @@ public class FileHandler {
 	
 	/** Get the one  one and only instance of this class.
 	 *	@return The singleton instance of this object. **/
-	public FileHandler getSingleton() {
+	public static FileHandler getSingleton() {
 		if(instance != null)
 			instance = new FileHandler();
 		
