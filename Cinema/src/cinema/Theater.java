@@ -98,8 +98,12 @@ public class Theater {
 	/** Get a string array representing the viewings in a readable format.
 	 * @return An array string where each element represents a single viewing.  **/
 	public String[] getViewings() {
-		// TODO get the viewings in readable format.
-		return null;
+		ArrayList<String> viewings = new ArrayList<String>();
+		
+		for(Viewing view : viewingList)
+			viewings.add(view.toString());
+		
+		return viewings.toArray(new String[0]);
 	}
 	
 	/** Get a string representation of this theater.
