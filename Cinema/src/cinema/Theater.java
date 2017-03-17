@@ -1,7 +1,9 @@
 package cinema;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /** This class represents a single theater within a cinema.
  * @author Gustaf Peter Hultgren
@@ -24,11 +26,13 @@ public class Theater {
 		this.seatRows = seatRows;
 		this.seatColumns = seatColumns;
 		this.theaterId = theaterId;
+		viewingList = new TreeSet<Viewing>();
 	}
 	
 	/** Create a new theater.
 	 * @param data -An array of the data required to create a new theater. **/
-	public Theater(String[] data) {
+	public Theater(String data) {
+		viewingList = new TreeSet<Viewing>();
 		// TODO process the data and create the object.
 	}
 	
@@ -50,19 +54,48 @@ public class Theater {
 		return seatColumns;
 	}
 	
+	/** Add a new viewing to the theater.
+	 * @param film -The film being displayed.
+	 * @param start -The start time for this viewing.
+	 * @return True if successful, false if the time is occupied. **/
 	public boolean addViewing(Film film, LocalDateTime start) {
-		return true;
+		return viewingList.add(new Viewing(film, start, seatRows * seatColumns));
 	}
 	
+	/** Get the selected viewing if it exists.
+	 * @param film -The film being displayed.
+	 * @param start -The start time for this viewing.
+	 * @return The desired viewing or null if it was not found. **/
 	public Viewing getViewing(Film film, LocalDateTime start) {
+		Viewing viewing = new Viewing(film, start, 1); // Create a new viewing as a search object.
+		
+		for(Viewing view : viewingList) {
+			if(view.compareTo(viewing) == 0)
+				return view;
+		}
+		
 		return null;
 	}
 	
+	/** Get a string array representing the viewings in a readable format.
+	 * @return An array string where each element represents a single viewing.  **/
 	public String[] getViewings() {
+		// TODO get the viewings in readable format.
 		return null;
 	}
 	
+	/** Get a string representation of this theater.
+	 * @return A string array where the first element represents the theater and the following elements represents
+	 * the individual viewing. **/
 	public String[] dataToString() {
-		return null;
+		ArrayList<String> strings = new ArrayList<String>();
+		String theaterString = "theater:" + getId() + "," + getSeatRows() + "," + getSeatColumns();
+		strings.add(theaterString);
+		
+		// Add all 
+		for(Viewing view : viewingList)
+			strings.add(view.toFileString());
+		
+		return strings.toArray(new String[0]);
 	}
 }
