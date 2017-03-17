@@ -1,3 +1,8 @@
+/*
+ * @Author Herman
+ * @Version 0.1
+ */
+
 package cinema;
 
 import java.time.LocalDateTime;
@@ -7,7 +12,8 @@ public class Viewing implements Comparable<Viewing> {
 	private Film film;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
-	ArrayList<String> seats;
+	private ArrayList<String> seats;
+	
 	
 	public Viewing(Film film, LocalDateTime startTime) {
 		this.setFilm(film);
@@ -38,11 +44,23 @@ public class Viewing implements Comparable<Viewing> {
 	void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
-
+	
 	@Override
-	public int compareTo(Viewing o) {
-		return getStartTime().compareTo(o.getStartTime());
+	public int compareTo(Viewing o) {		
+		int result;
+		if (getStartTime().isBefore(o.getStartTime()) && getEndTime().isBefore(o.getStartTime()))
+			result = -1;
+		else if (getStartTime().isAfter(o.getEndTime())) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+			
+		return result;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "";
+	}
 }
