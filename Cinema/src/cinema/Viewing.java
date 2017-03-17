@@ -39,7 +39,7 @@ public class Viewing implements Comparable<Viewing> {
 		}
 	}
 	
-	public void bookSeat(String ticketID, int seat) {
+	public void bookSeat(int seat, String ticketID) {
 		seats[seat] = ticketID;
 	}
 
@@ -90,7 +90,7 @@ public class Viewing implements Comparable<Viewing> {
 	}
 	
 	/**
-	 * @return All data from Viewing
+	 * @return All data from Viewing, including all seats, and their respective ticketID's.
 	 */
 	public String toFileString() {
 		String fileString = "Viewing:" + film.getTitle() + "," + startTime.toString() + "Seats:";
