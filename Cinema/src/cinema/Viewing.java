@@ -38,6 +38,10 @@ public class Viewing implements Comparable<Viewing> {
 			this.seats[i] = seats[i];
 		}
 	}
+	
+	public void bookSeat(String ticketID, int seat) {
+		seats[seat] = ticketID;
+	}
 
 	Film getFilm() {
 		return film;
