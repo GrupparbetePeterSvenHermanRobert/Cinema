@@ -1,5 +1,6 @@
 package cinema;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.SortedSet;
@@ -30,19 +31,32 @@ public class Theater {
 	}
 	
 	/** Create a new theater.
-	 * @param data -An array of the data required to create a new theater. **/
-	public Theater(String data) {
+	 * @param data -An array of the data required to create a new theater. 
+	 * @throws IOException **/
+	public Theater(String data) throws IOException {
 		viewingList = new TreeSet<Viewing>();
 		int index = data.indexOf(':');
+		
+		if(index < 0)
+			throw new IOException("Invalid data!");
 		
 		// Remove the theater heading
 		String substring = data.substring(index + 1);
 		
 		// Extract the information from the string.
 		String parameters[] = substring.split(",");
-		theaterId = Integer.parseInt(parameters[0]);
-		seatRows = Integer.parseInt(parameters[1]);
-		seatColumns = Integer.parseInt(parameters[2]);
+		
+		if(parameters.length < 3)
+			throw new IOException("Invalid data!");
+		
+		try {
+			theaterId = Integer.parseInt(parameters[0]);
+			seatRows = Integer.parseInt(parameters[1]);
+			seatColumns = Integer.parseInt(parameters[2]);
+		}
+		catch (NumberFormatException e) {
+			throw new NumberFormatException("Teater parameters are invalid! " + e.getMessage());
+		}
 	}
 	
 	/** Get the theater ID.
