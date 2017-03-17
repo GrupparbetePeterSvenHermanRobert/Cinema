@@ -1,18 +1,23 @@
-/*
- * @Author Herman
- * @Version 0.1
- */
-
 package cinema;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Herman
+ *
+ */
 public class Viewing implements Comparable<Viewing> {
 	private Film film;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private String[] seats;
 	
+	/**
+	 * The end time of the film will be calculated in this constructor.
+	 * @param film - A reference to a film-object.
+	 * @param startTime - Start time, and date, of the film.
+	 * @param seatAmount - Amount of seats in the theater.
+	 */
 	public Viewing(Film film, LocalDateTime startTime, int seatAmount) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
@@ -44,6 +49,9 @@ public class Viewing implements Comparable<Viewing> {
 		this.endTime = endTime;
 	}
 	
+	/**
+	 * @return 0 if o  
+	 */
 	@Override
 	public int compareTo(Viewing o) {		
 		int result;
@@ -54,17 +62,19 @@ public class Viewing implements Comparable<Viewing> {
 		} else {
 			result = 0;
 		}
-			
 		return result;
 	}
 	
 	@Override
 	public String toString() {
-		return film.getTitle() + "," + startTime.toString() + "," + endTime.toString();
+		return film.getTitle() + ", " + startTime.toString() + ", " + endTime.toString();
 	}
 	
+	/**
+	 * @return the 
+	 */
 	public String toFileString() {
-		String fileString = film.getTitle()	+ "," + startTime.toString() + "," + endTime.toString();
+		String fileString = "Viewing:" + film.getTitle() + "," + startTime.toString() + "Seats:";
 		for (String seat : seats) {
 			fileString += "," + seat;
 		}
