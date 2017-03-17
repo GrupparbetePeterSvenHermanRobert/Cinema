@@ -24,6 +24,16 @@ public class Viewing implements Comparable<Viewing> {
 		setEndTime(startTime.plusMinutes(film.getLength().toMinutes()));
 		seats = new String[seatAmount];
 	}
+	
+	/**
+	 * Overloaded constructor adapted for loading Strings from file. ish
+	 */
+	public Viewing(Film film, LocalDateTime startTime, String[] seats) {
+		this.setFilm(film);
+		this.setStartTime(startTime);
+		setEndTime(startTime.plusMinutes(film.getLength().toMinutes()));
+		seats = new String[seats.length];
+	}
 
 	Film getFilm() {
 		return film;
@@ -65,13 +75,14 @@ public class Viewing implements Comparable<Viewing> {
 		return result;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return film.getTitle() + ", " + startTime.toString() + ", " + endTime.toString();
 	}
 	
 	/**
-	 * @return the 
+	 * @return All data from Viewing
 	 */
 	public String toFileString() {
 		String fileString = "Viewing:" + film.getTitle() + "," + startTime.toString() + "Seats:";
