@@ -1,74 +1,76 @@
 package cinema;
-/**this is the Ticket
+
+/**
+ * this is the Ticket
+ * 
  * @author Sven
  * @version 0.1
  */
 public class Ticket {
 
-	
-/** Ticket ID**/
-private String ticketId;
 
-/** viewing **/
-private Viewing viewing;
+	/** Ticket ID **/
+	private String ticketId;
 
-/**the seat number in the theatre**/
-private int seat;
+	/** viewing **/
+	private Viewing viewing;
 
-
-public Viewing getViewing() {
-	return viewing;
-}
+	/** the seat number in the theatre **/
+	private int seat;
 
 
-public void setViewing(Viewing viewing) {
-	this.viewing = viewing;
-}
+	public Viewing getViewing() {
+		return viewing;
+	}
 
 
-public int getSeat() {
-	return seat;
-}
+	public void setViewing(Viewing viewing) {
+		this.viewing = viewing;
+	}
 
 
-public void setSeat(int seat) {
-	this.seat = seat;
-}
+	public int getSeat() {
+		return seat;
+	}
 
 
-public int getTheatreId() {
-	return theatreId;
-}
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
 
 
-public void setTheatreId(int theatreId) {
-	this.theatreId = theatreId;
-}
+	public int getTheatreId() {
+		return theatreId;
+	}
 
 
-public String getTicketId() {
-	return ticketId;
-}
+	public void setTheatreId(int theatreId) {
+		this.theatreId = theatreId;
+	}
 
 
-int theatreId;
+	public String getTicketId() {
+		return ticketId;
+	}
 
 
-/**the id of the Theatre
- * @param ticketId
- * @param viewing
- * @param seat
- * @param theatreId
- **/
-public Ticket( String ticketId,Viewing viewing, int seat, int theatreId ){
-	this.ticketId= ticketId;
-	this.viewing = viewing;
-	this.seat = seat;
-	this.theatreId= theatreId;
-}
-	
+	int theatreId;
 
 
+	/**
+	 * the id of the Theatre
+	 * 
+	 * @param ticketId
+	 * @param viewing
+	 * @param seat
+	 * @param theatreId
+	 **/
+	public Ticket(String ticketId, Viewing viewing, int seat, int theatreId) {
+		this.ticketId = ticketId;
+		this.viewing = viewing;
+		this.seat = seat;
+		this.theatreId = theatreId;
+	}
 
 
 
