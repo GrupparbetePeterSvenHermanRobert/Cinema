@@ -34,10 +34,15 @@ public class Theater {
 	public Theater(String data) {
 		viewingList = new TreeSet<Viewing>();
 		int index = data.indexOf(':');
+		
+		// Remove the theater heading
 		String substring = data.substring(index + 1);
 		
-		//"theater:" + getId() + "," + getSeatRows() + "," + getSeatColumns()
-		// TODO process the data and create the object.
+		// Extract the information from the string.
+		String parameters[] = substring.split(",");
+		theaterId = Integer.parseInt(parameters[0]);
+		seatRows = Integer.parseInt(parameters[1]);
+		seatColumns = Integer.parseInt(parameters[2]);
 	}
 	
 	/** Get the theater ID.
@@ -63,6 +68,15 @@ public class Theater {
 	 * @param start -The start time for this viewing.
 	 * @return True if successful, false if the time is occupied. **/
 	public boolean addViewing(Film film, LocalDateTime start) {
+		return viewingList.add(new Viewing(film, start, seatRows * seatColumns));
+	}
+	
+	/** Add a new viewing to the theater.
+	 * @param film -The film being displayed.
+	 * @param start -The start time for this viewing.
+	 * @param seatData -The data for the seat bookings.
+	 * @return True if successful, false if the time is occupied. **/
+	public boolean addViewing(Film film, LocalDateTime start, String seatData) {
 		return viewingList.add(new Viewing(film, start, seatRows * seatColumns));
 	}
 	
