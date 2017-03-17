@@ -120,4 +120,12 @@ public class Theater {
 		
 		return strings.toArray(new String[0]);
 	}
+	
+	public boolean bookSeat(LocalDateTime start, int seatId) {
+		return false;
+	}
+	
+	public boolean bookSeat(LocalDateTime start, int seatId, int seatCount) {
+		return false;
+	}
 }
