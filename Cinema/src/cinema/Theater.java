@@ -121,11 +121,12 @@ public class Theater {
 		return strings.toArray(new String[0]);
 	}
 	
-	public boolean bookSeat(LocalDateTime start, int seatId) {
+	/** Book a seat for a specific viewing. **/
+	public boolean bookSeat(LocalDateTime start, int seatId, String ticketId) {
 		return false;
 	}
 	
-	public boolean bookSeat(LocalDateTime start, int seatId, int seatCount) {
+	public boolean bookSeat(LocalDateTime start, int seatId, int seatCount, String ticketId) {
 		return false;
 	}
 }
