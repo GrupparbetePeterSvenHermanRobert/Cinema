@@ -41,8 +41,7 @@ public class Viewing implements Comparable<Viewing> {
 
 	@Override
 	public int compareTo(Viewing o) {
-		
-		return 0;
+		return getStartTime().compareTo(o.getStartTime());
 	}
 	
 	
