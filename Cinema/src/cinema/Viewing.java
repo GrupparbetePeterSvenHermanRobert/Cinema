@@ -14,7 +14,6 @@ public class Viewing implements Comparable<Viewing> {
 	private LocalDateTime endTime;
 	private ArrayList<String> seats;
 	
-	
 	public Viewing(Film film, LocalDateTime startTime) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
