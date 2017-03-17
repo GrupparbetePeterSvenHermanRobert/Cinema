@@ -6,18 +6,18 @@
 package cinema;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Viewing implements Comparable<Viewing> {
 	private Film film;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
-	private ArrayList<String> seats;
+	private String[] seats;
 	
-	public Viewing(Film film, LocalDateTime startTime) {
+	public Viewing(Film film, LocalDateTime startTime, int seatAmount) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
 		setEndTime(startTime.plusMinutes(film.getLength().toMinutes()));
+		seats = new String[seatAmount];
 	}
 
 	Film getFilm() {
@@ -60,6 +60,14 @@ public class Viewing implements Comparable<Viewing> {
 	
 	@Override
 	public String toString() {
-		return "";
+		return film.getTitle() + "," + startTime.toString() + "," + endTime.toString();
+	}
+	
+	public String toFileString() {
+		String fileString = film.getTitle()	+ "," + startTime.toString() + "," + endTime.toString();
+		for (String seat : seats) {
+			fileString += "," + seat;
+		}
+		return fileString;
 	}
 }
