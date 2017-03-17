@@ -32,7 +32,11 @@ public class Viewing implements Comparable<Viewing> {
 		this.setFilm(film);
 		this.setStartTime(startTime);
 		setEndTime(startTime.plusMinutes(film.getLength().toMinutes()));
-		seats = new String[seats.length];
+		this.seats = new String[seats.length];
+		
+		for (int i = 0; i < seats.length; i++) {
+			this.seats[i] = seats[i];
+		}
 	}
 
 	Film getFilm() {
