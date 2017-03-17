@@ -102,19 +102,20 @@ public class Cinema {
 		return false;
 	}
 
-	public boolean bookSeat(int theatreID, LocalDateTime start, int seatId) {
+	public boolean bookSeat(int theatreID, LocalDateTime start, int seatId, String ticketId){ 
+			
 			int id = Math.abs(theatreID);
 			if (id<theatreList.size()){
-				return theatreList.get(id).bookSeat(start, seatId);
+				return theatreList.get(id).bookSeat(start, seatId, ticketId);
 			}
 		
 		return false;
 	}
 
-	public boolean bookSeat(int teatreId, LocalDateTime start, int seatId, int seatCount) {
+	public boolean bookSeat(int teatreId, LocalDateTime start, int seatId, int seatCount,String ticketId) {
 		int id = Math.abs(teatreId);
 		if (id<theatreList.size()){
-			return theatreList.get(id).bookSeat(start, seatId,seatCount);
+			return theatreList.get(id).bookSeat(start, seatId,seatCount,ticketId);
 		}
 	
 	return false;
