@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 /** This class represents a single theater within a cinema.
  * @author Gustaf Peter Hultgren
- * @version 0.4 **/
+ * @version 0.4.1 **/
 public class Theater {
 	/** The identification number of this theater. **/
 	private int theaterId;
