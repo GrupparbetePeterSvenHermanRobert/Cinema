@@ -1,6 +1,7 @@
 package cinema;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.SortedSet;
@@ -8,7 +9,7 @@ import java.util.TreeSet;
 
 /** This class represents a single theater within a cinema.
  * @author Gustaf Peter Hultgren
- * @version 0.5 **/
+ * @version 0.6 **/
 public class Theater {
 	/** The identification number of this theater. **/
 	private int theaterId;
@@ -166,5 +167,19 @@ public class Theater {
 		}
 		
 		return false;
+	}
+	
+	/** Main function for testing the theater class. **/
+	public static void main(String[] args) {
+		Theater theater = new Theater(0, 3, 4);
+		
+		boolean check = theater.addViewing(new Film("Lord of the Rings", "A good movie.", Duration.ofMinutes(125)), LocalDateTime.now());
+		System.out.println("Add a viewing with no collisions: " + check);
+		check = theater.addViewing(new Film("Lord of the Rings", "A good movie.", Duration.ofMinutes(125)), LocalDateTime.now().plusMinutes(50));
+		System.out.println("Add a viewing that collides: " + check);
+		check = theater.addViewing(new Film("Lord of the Rings", "A good movie.", Duration.ofMinutes(125)), LocalDateTime.now().plusMinutes(150));
+		System.out.println("Add a viewing with no collisions: " + check);
+		
+		
 	}
 }
