@@ -7,12 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 /** This class is a singleton object that handles reading and writing to files.
  * @author Gustaf Peter Hultgren
- * @version 0.1.1 **/
+ * @version 0.2 **/
 public class FileHandler {
 	/** The last path used. **/
 	private Path path;
@@ -27,7 +26,7 @@ public class FileHandler {
 	/** Get the one  one and only instance of this class.
 	 *	@return The singleton instance of this object. **/
 	public static FileHandler getSingleton() {
-		if(instance != null)
+		if(instance == null)
 			instance = new FileHandler();
 		
 		return instance;
@@ -41,7 +40,7 @@ public class FileHandler {
 		this.path = path;
 		BufferedWriter bw = null;
 		
-		bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+		bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
 		bw.write("");
 		
 		for(String string : data) {
@@ -56,7 +55,7 @@ public class FileHandler {
 	 * @param data -A string array containing the data to save to file.
 	 * @throws IOException **/
 	public void save(String[] data) throws IOException {
-		BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+		BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
 		bw.write("");
 		
 		for(String string : data) {
@@ -75,7 +74,7 @@ public class FileHandler {
 		this.path = path;
 		BufferedWriter bw = null;
 		
-		bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+		bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
 		bw.write(data);
 		
 		bw.close();
@@ -85,7 +84,7 @@ public class FileHandler {
 	 * @param data -A string containing the data to save to file.
 	 * @throws IOException **/
 	public void save(String data) throws IOException {
-		BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+		BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
 		bw.write(data);
 		
 		bw.close();
@@ -104,6 +103,7 @@ public class FileHandler {
 		while(line != null)
 		{
 			strings.add(line);
+			line = br.readLine();
 		}
 		
 		br.close();
@@ -122,6 +122,7 @@ public class FileHandler {
 		while(line != null)
 		{
 			strings.add(line);
+			line = br.readLine();
 		}
 		
 		br.close();
@@ -145,6 +146,7 @@ public class FileHandler {
 				data += "\n";
 			
 			data += line;
+			line = br.readLine();
 		}
 		
 		br.close();
@@ -166,10 +168,43 @@ public class FileHandler {
 				data += "\n";
 			
 			data += line;
+			line = br.readLine();
 		}
 		
 		br.close();
 		
 		return data;
+	}
+	
+	/** Main function for testing this class. **/
+	public static void main(String[] args) {
+		FileHandler fileHandler = FileHandler.getSingleton();
+		String data[] = {"Hello", "World", "!"};
+		String data2[] = {"Hello", "World", "II", "!"};
+		
+		
+		try {
+			fileHandler.save("Hello World!", Paths.get("data", "string.txt"));
+			fileHandler.save("Hello World II!");
+			
+			fileHandler.save(data, Paths.get("data", "strings.txt"));
+			fileHandler.save(data2);
+			
+			System.out.println(fileHandler.loadString(Paths.get("data", "string.txt")));
+			System.out.println(fileHandler.loadString());
+			
+			String data3[] = fileHandler.load(Paths.get("data", "strings.txt"));
+			for(String string : data3) {
+				System.out.println(string);
+			}
+			
+			String data4[] = fileHandler.load();
+			for(String string : data4) {
+				System.out.println(string);
+			}
+		
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
