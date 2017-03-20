@@ -48,6 +48,8 @@ public class FileHandler {
 			bw.append(string);
 			bw.newLine();
 		}
+		
+		bw.close();
 	}
 	
 	/** Save the given data to the previously used file.
@@ -61,6 +63,8 @@ public class FileHandler {
 			bw.append(string);
 			bw.newLine();
 		}
+		
+		bw.close();
 	}
 	
 	/** Save the given data to the selected file.
@@ -73,6 +77,8 @@ public class FileHandler {
 		
 		bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 		bw.write(data);
+		
+		bw.close();
 	}
 	
 	/** Save the given data to the previously used file.
@@ -81,6 +87,8 @@ public class FileHandler {
 	public void save(String data) throws IOException {
 		BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 		bw.write(data);
+		
+		bw.close();
 	}
 	
 	/** Load the selected file.
@@ -98,6 +106,8 @@ public class FileHandler {
 			strings.add(line);
 		}
 		
+		br.close();
+		
 		return strings.toArray(new String[0]);
 	}
 	
@@ -113,6 +123,8 @@ public class FileHandler {
 		{
 			strings.add(line);
 		}
+		
+		br.close();
 		
 		return strings.toArray(new String[0]);
 	}
@@ -135,6 +147,8 @@ public class FileHandler {
 			data += line;
 		}
 		
+		br.close();
+		
 		return data;
 	}
 	
@@ -153,6 +167,8 @@ public class FileHandler {
 			
 			data += line;
 		}
+		
+		br.close();
 		
 		return data;
 	}
