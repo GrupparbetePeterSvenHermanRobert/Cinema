@@ -42,7 +42,10 @@ public class Cinema {
 
 		int absTaterid = Math.abs(theatreId);
 		Ticket createTicket = null;
+
 		if (theatreId < theaterList.size()) {
+
+		
 			// TODO kontrolera att sätets finns
 			createTicket = new Ticket(ticketID, viewing, seat, theatreId);
 		}

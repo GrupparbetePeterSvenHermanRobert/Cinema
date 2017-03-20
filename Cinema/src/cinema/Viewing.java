@@ -93,7 +93,7 @@ public class Viewing implements Comparable<Viewing> {
 	@Override
 	public int compareTo(Viewing o) {
 		int result;
-		if (getStartTime().isBefore(o.getStartTime()) && getEndTime().isBefore(o.getStartTime()))
+		if (getEndTime().isBefore(o.getStartTime()))
 			result = -1;
 		else if (getStartTime().isAfter(o.getEndTime())) {
 			result = 1;
