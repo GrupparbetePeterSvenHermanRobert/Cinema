@@ -49,7 +49,7 @@ public class Viewing implements Comparable<Viewing> {
 
 	public boolean bookSeat(int seat, String ticketID) {
 		boolean success;
-		if (seats[seat] != null) {
+		if (seats[seat] == null) {
 			seats[seat] = ticketID;
 			success = true;
 		} else {
