@@ -2,6 +2,8 @@ package cinema;
 
 import java.time.LocalDateTime;
 
+
+
 /**
  * @author Herman
  *
@@ -28,6 +30,8 @@ public class Viewing implements Comparable<Viewing> {
 		setEndTime(startTime.plusMinutes(film.getLength().toMinutes()));
 		seats = new String[seatAmount];
 	}
+	
+	//En kommentar...
 
 	/**
 	 * Overloaded constructor adapted for loading Strings from file. ish
@@ -55,6 +59,7 @@ public class Viewing implements Comparable<Viewing> {
 	}
 
 	public boolean bookSeats(int seat, String ticketID, int seatCount) {
+		
 		return false;
 	}
 

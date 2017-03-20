@@ -2,6 +2,7 @@ package cinema;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.LocalDateTime;
 /**this is the Ticket
  * @author Sven
@@ -9,6 +10,8 @@ import java.time.LocalDateTime;
  */
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * This filmlist will be a set of films
@@ -16,11 +19,16 @@ import java.util.Set;
  */
 
 public class Cinema {
-	public Set<Film> filmList;
-	public ArrayList<Theater> theatreList;
+	public SortedSet<Film> filmList;
+	public ArrayList<Theater> theaterList;
 	public ArrayList<Ticket> ticketList;
 
-
+	public Cinema() {
+		filmList = new TreeSet<Film>();
+		theaterList = new ArrayList<Theater>();
+		ticketList = new ArrayList<Ticket>();
+	}
+	
 	/**
 	 * here makes tickets
 	 * 
@@ -34,20 +42,43 @@ public class Cinema {
 
 		int absTaterid = Math.abs(theatreId);
 		Ticket createTicket = null;
-		if (theatreId < theatreList.size()) {
+		if (theatreId < theaterList.size()) {
 			// TODO kontrolera att sätets finns
 			createTicket = new Ticket(ticketID, viewing, seat, theatreId);
 		}
 		return createTicket;
+	} 
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param title - Filmtitel
+	 * @param description - Beskrivning av aktuell film
+	 * @param minutes - Filmens längd i minuter
+	 */
+	public void addFilm(String title, String description, int minutes) {
+		Film film = new Film(title, description, Duration.ofMinutes(59));
+		filmList.add(film);
 	}
-
-
+	
+	/*
+	 * 
+	 */
+	public String getFilms() {
+		String films = "";
+		for (Film film : filmList) {
+			films += film + "\n";
+		}
+		return films;
+	}
 
 
 
 	public String[] listAllViewing() {
 		ArrayList<String> allList = new ArrayList<String>();
-		for (Theater teater : theatreList) {
+		for (Theater teater : theaterList) {
 			String array[] = teater.getViewings();
 			allList.add("Teater: " + teater.getId());
 			for (String string : array)
@@ -61,8 +92,8 @@ public class Cinema {
 
 	public String[] listViewings(int theatreId) {
 		int id = Math.abs(theatreId);
-		if (id < theatreList.size()) {
-			return this.theatreList.get(theatreId).getViewings();
+		if (id < theaterList.size()) {
+			return this.theaterList.get(theatreId).getViewings();
 		}
 		return null;
 
@@ -96,8 +127,8 @@ public class Cinema {
 
 	public boolean addViewing(int theatreId, Film film, LocalDateTime start) {
 			int id = Math.abs(theatreId);
-			if (id<theatreList.size()){
-				return theatreList.get(id).addViewing(film, start);				
+			if (id<theaterList.size()){
+				return theaterList.get(id).addViewing(film, start);				
 			}
 		return false;
 	}
@@ -105,8 +136,8 @@ public class Cinema {
 	public boolean bookSeat(int theatreID, LocalDateTime start, int seatId, String ticketId){ 
 			
 			int id = Math.abs(theatreID);
-			if (id<theatreList.size()){
-				return theatreList.get(id).bookSeat(start, seatId, ticketId);
+			if (id<theaterList.size()){
+				return theaterList.get(id).bookSeat(start, seatId, ticketId);
 			}
 		
 		return false;
@@ -114,8 +145,8 @@ public class Cinema {
 
 	public boolean bookSeat(int teatreId, LocalDateTime start, int seatId, int seatCount,String ticketId) {
 		int id = Math.abs(teatreId);
-		if (id<theatreList.size()){
-			return theatreList.get(id).bookSeat(start, seatId,seatCount,ticketId);
+		if (id<theaterList.size()){
+			return theaterList.get(id).bookSeat(start, seatId,seatCount,ticketId);
 		}
 	
 	return false;
