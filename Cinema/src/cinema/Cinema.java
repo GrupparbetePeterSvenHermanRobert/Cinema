@@ -62,7 +62,7 @@ public class Cinema {
 	 * @param minutes - Filmens längd i minuter
 	 */
 	public void addFilm(String title, String description, int minutes) {
-		Film film = new Film(title, description, Duration.ofMinutes(59));
+		Film film = new Film(title, description, 59);
 		filmList.add(film);
 	}
 	

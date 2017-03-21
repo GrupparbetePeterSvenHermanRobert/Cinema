@@ -142,7 +142,7 @@ public class Theater {
 	 * @param ticketId -The ID of the ticket. 
 	 * @return True if the seat was available, else false.**/
 	public boolean bookSeat(LocalDateTime start, int seatId, String ticketId) {
-		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", Duration.ofMinutes(120)), start, seatRows * seatColumns);
+		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", 120), start, seatRows * seatColumns);
 		
 		for(Viewing view : viewingList) {
 			if(view.compareTo(viewing) == 0)
@@ -159,7 +159,7 @@ public class Theater {
 	 * @param ticketId -The ID of the ticket. 
 	 * @return True if the seat was available, else false.**/
 	public boolean bookSeat(LocalDateTime start, int seatId, int seatCount, String ticketId) {
-		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", Duration.ofMinutes(120)), start, seatRows * seatColumns);
+		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", 120), start, seatRows * seatColumns);
 		
 		for(Viewing view : viewingList) {
 			if(view.compareTo(viewing) == 0)
@@ -173,7 +173,7 @@ public class Theater {
 	public static void main(String[] args) {
 		Theater theater = new Theater(0, 3, 4);
 		LocalDateTime ldt = LocalDateTime.now();
-		Film film = new Film("Lord of the Rings", "A good movie.", Duration.ofMinutes(125));
+		Film film = new Film("Lord of the Rings", "A good movie.", 125);
 		
 		boolean check = theater.addViewing(film, ldt);
 		System.out.println("Add a viewing with no collisions: " + check);
@@ -198,7 +198,6 @@ public class Theater {
 			
 			System.out.println(strings.length + ":" + t2.getId() + ", " + t2.getSeatRows() + ", " + t2.getSeatColumns());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

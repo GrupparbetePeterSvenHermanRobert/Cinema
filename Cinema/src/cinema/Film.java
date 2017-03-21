@@ -34,10 +34,23 @@ public class Film implements Comparable<Film> {
 	 * 
 	 * @return nothing
 	 **/
-	public Film(String title, String description, Duration length) {
+	public Film(String title, String description, long length) {
 		this.title = title;
 		this.description = description;
-		this.length = length;
+		this.length = Duration.ofMinutes(length);
+		period = LocalDateTime.now().plusMonths(2);
+	}
+	
+	/** Create a new film object.
+	 * @param title -The title of the film.
+	 * @param description -A bief description of the film.
+	 * @param length -The length of the film, in minutes.
+	 * @param period -The planned period during which this film will be shown. **/
+	public Film(String title, String description, long length, LocalDateTime period) {
+		this.title = title;
+		this.description = description;
+		this.length = Duration.ofMinutes(length);
+		this.period = period;
 	}
 
 	/**
@@ -81,13 +94,25 @@ public class Film implements Comparable<Film> {
 	 * 
 	 * @return length
 	 */
-	public Duration getLength() {
-		return length;
+	public long getLength() {
+		return length.toMinutes();
 	}
 	
 	@Override
 	public String toString() {
 		return ("Titel: " + title + "\n" + "Description: " + description + "\n" + "Length in minutes: " + length.toMinutes());
+	}
+	
+	/** Main test function. **/
+	public static void main(String[] args) {
+		Film film = new Film("Guardians of the Galaxy", "A good movie.", 125);
+		System.out.println("Title: " + film.getTitle());
+		System.out.println("Description: " + film.getDescription());
+		System.out.println("Length: " + film.getLength());
+		System.out.println("Period: " + film.getPeriod());
+		
+		System.out.println("----------------------------------------");
+		System.out.println(film.toString());
 	}
 
 }
