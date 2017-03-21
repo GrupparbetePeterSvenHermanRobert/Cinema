@@ -73,6 +73,12 @@ public class Viewing implements Comparable<Viewing> {
 		
 		return false;
 	}
+	
+	/** Get an array with the status of each seat.
+	 * @return A string array where each element represents the seat's status. Null = available. **/
+	String[] getSeatStatus() {
+		return seats;
+	}
 
 	Film getFilm() {
 		return film;
