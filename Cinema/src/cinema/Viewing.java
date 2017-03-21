@@ -79,6 +79,18 @@ public class Viewing implements Comparable<Viewing> {
 	String[] getSeatStatus() {
 		return seats;
 	}
+	
+	/** Check weather a given seat is available.
+	 * @param index -The seat number.
+	 * @return True if the seat is available, else False. **/
+	boolean seatAvailable(int index) {
+		if(index >= 0 && index < seats.length) {
+			if(seats[index] == null)
+			return true;
+		}
+		
+		return false;
+	}
 
 	Film getFilm() {
 		return film;

@@ -40,14 +40,13 @@ public class Cinema {
 	 */
 	public Ticket createTicket (String ticketID,Viewing viewing, int seat, int theatreId){
 
-		int absTaterid = Math.abs(theatreId);
+		int id = Math.abs(theatreId);
 		Ticket createTicket = null;
 
-		if (theatreId < theaterList.size()) {
+		if (id < theaterList.size()) {
 
-		
 			// TODO kontrolera att sätets finns
-			createTicket = new Ticket(ticketID, viewing, seat, theatreId);
+			createTicket = new Ticket(ticketID, viewing, seat, id);
 		}
 		return createTicket;
 	} 
@@ -96,7 +95,7 @@ public class Cinema {
 	public String[] listViewings(int theatreId) {
 		int id = Math.abs(theatreId);
 		if (id < theaterList.size()) {
-			return this.theaterList.get(theatreId).getViewings();
+			return this.theaterList.get(id).getViewings();
 		}
 		return null;
 
