@@ -15,8 +15,10 @@ public class Ticket {
 	/** viewing **/
 	private Viewing viewing;
 
-	/** the seat number in the theatre **/
+	/** the seat number in the theater **/
 	private int seat;
+	
+	private int theaterId;
 
 
 	public Viewing getViewing() {
@@ -40,12 +42,12 @@ public class Ticket {
 
 
 	public int getTheatreId() {
-		return theatreId;
+		return theaterId;
 	}
 
 
-	public void setTheatreId(int theatreId) {
-		this.theatreId = theatreId;
+	public void setTheatreId(int theaterId) {
+		this.theaterId = theaterId;
 	}
 
 
@@ -54,22 +56,19 @@ public class Ticket {
 	}
 
 
-	int theatreId;
-
-
 	/**
-	 * the id of the Theatre
+	 * the id of the Theater
 	 * 
 	 * @param ticketId
 	 * @param viewing
 	 * @param seat
-	 * @param theatreId
+	 * @param theaterId
 	 **/
-	public Ticket(String ticketId, Viewing viewing, int seat, int theatreId) {
+	public Ticket(String ticketId, Viewing viewing, int seat, int theaterId) {
 		this.ticketId = ticketId;
 		this.viewing = viewing;
 		this.seat = seat;
-		this.theatreId = theatreId;
+		this.theaterId = theaterId;
 	}
 
 
