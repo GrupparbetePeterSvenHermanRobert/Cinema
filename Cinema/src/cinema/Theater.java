@@ -1,7 +1,6 @@
 package cinema;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.SortedSet;
@@ -163,7 +162,7 @@ public class Theater {
 		
 		for(Viewing view : viewingList) {
 			if(view.compareTo(viewing) == 0)
-				return view.bookSeats(seatId, ticketId, seatCount);
+				return view.bookSeats(seatId, ticketId, seatCount, seatRows);
 		}
 		
 		return false;

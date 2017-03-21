@@ -48,7 +48,7 @@ public class Viewing implements Comparable<Viewing> {
 	}
 
 	public boolean bookSeat(int seat, String ticketID) {
-		boolean success;
+		boolean success = false;
 		if (seats[seat] == null) {
 			seats[seat] = ticketID;
 			success = true;
@@ -58,7 +58,18 @@ public class Viewing implements Comparable<Viewing> {
 		return success;
 	}
 
-	public boolean bookSeats(int seat, String ticketID, int seatCount) {
+	public boolean bookSeats(int seat, String ticketID, int seatCount, int rowLength) {
+		
+		int rowSeat = seat % rowLength;
+		if(rowSeat + seatCount < rowLength) {
+			for(int i = seat; i < seat + seatCount; i++)
+				if(seats[seat] != null)
+					return false;
+			for(int i = seat; i < seat + seatCount; i++)
+				seats[seat] = ticketID;
+			
+			return true;
+		}
 		
 		return false;
 	}
@@ -122,6 +133,9 @@ public class Viewing implements Comparable<Viewing> {
 	
 	/** Main function for testing this class. **/
 	public static void main(String[] args) {
+		Film film = new Film("Some Film Title", "Some Film Description", 120);
+		Viewing viewing = new Viewing(film, LocalDateTime.now().plusDays(5), 3 * 4);
 		
+		System.out.println(viewing.bookSeat(0, "Some ID"));
 	}
 }
