@@ -2,14 +2,12 @@ package cinema;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.time.Duration;
 import java.time.LocalDateTime;
 /**this is the Ticket
  * @author Sven
  * @version 0.1
  */
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -46,7 +44,10 @@ public class Cinema {
 		if (id < theaterList.size()) {
 
 			// TODO kontrolera att sätets finns
-			createTicket = new Ticket(ticketID, viewing, seat, id);
+			if(viewing.seatAvailable(seat))
+				createTicket = new Ticket(ticketID, viewing, seat, id);
+			else
+				return null;
 		}
 		return createTicket;
 	} 
