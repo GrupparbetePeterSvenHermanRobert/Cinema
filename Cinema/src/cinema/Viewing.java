@@ -119,4 +119,9 @@ public class Viewing implements Comparable<Viewing> {
 		}
 		return fileString;
 	}
+	
+	/** Main function for testing this class. **/
+	public static void main(String[] args) {
+		
+	}
 }
