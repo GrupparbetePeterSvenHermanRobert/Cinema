@@ -52,9 +52,6 @@ public class Cinema {
 		return createTicket;
 	} 
 	
-	
-	
-	
 	/**
 	 * 
 	 * @param title - Filmtitel
@@ -86,8 +83,6 @@ public class Cinema {
 		return filmToReturn;
 	}
 
-
-
 	public String[] listAllViewing() {
 		ArrayList<String> allList = new ArrayList<String>();
 		for (Theater teater : theaterList) {
@@ -99,19 +94,13 @@ public class Cinema {
 		return allList.toArray(new String[0]);
 	}
 
-
-
-
 	public String[] listViewings(int theatreId) {
 		int id = Math.abs(theatreId);
 		if (id < theaterList.size()) {
 			return this.theaterList.get(id).getViewings();
 		}
 		return null;
-
 	}
-
-
 
 	public boolean saveToFile(Path path) {
 		FileHandler c = FileHandler.getSingleton();
@@ -162,11 +151,6 @@ public class Cinema {
 	
 	return false;
 	}
-
-
-
-
-
 
 }
 
