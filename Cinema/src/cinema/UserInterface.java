@@ -3,6 +3,7 @@ package cinema;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 /** Den här är användareinterface
  *@author  Sven  
  *@version 0.1**/
@@ -15,10 +16,14 @@ public class UserInterface {
  * @param args - Eventuella programargument
  * @return nothing**/
 	public static void main(String[] args) {
+			
 		Cinema cinema = new Cinema();
-		cinema.addFilm("Robocop 2", "Action", 320);
+		cinema.addFilm("Robocop 2", "Action", 240);
 		System.out.println(cinema.getFilms());
 		
+		Theater theater = new Theater(1, 10, 20);
+		
+//		Viewing viewing = new Viewing(cinema.getFilm("Robocop 2"), LocalDateTime.now(), )
 	
 	}
 }

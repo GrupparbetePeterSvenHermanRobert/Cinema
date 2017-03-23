@@ -62,7 +62,7 @@ public class Cinema {
 	 * @param minutes - Filmens längd i minuter
 	 */
 	public void addFilm(String title, String description, int minutes) {
-		Film film = new Film(title, description, 59);
+		Film film = new Film(title, description, minutes);
 		filmList.add(film);
 	}
 	
@@ -75,6 +75,15 @@ public class Cinema {
 			films += film + "\n";
 		}
 		return films;
+	}
+	
+	public Film getFilm(String title) {
+		Film filmToReturn = null;
+		for (Film film : filmList) {
+			if (title == film.getTitle())
+				filmToReturn = film;
+		}
+		return filmToReturn;
 	}
 
 
@@ -128,10 +137,9 @@ public class Cinema {
 		return true;
 	}
 
-	public boolean addViewing(int theatreId, Film film, LocalDateTime start) {
-			int id = Math.abs(theatreId);
-			if (id<theaterList.size()){
-				return theaterList.get(id).addViewing(film, start);				
+	public boolean addViewing(int theaterId, Film film, LocalDateTime start) {
+			if (theaterId < 0 || theaterId < theaterList.size()){
+				return theaterList.get(theaterId).addViewing(film, start);				
 			}
 		return false;
 	}
