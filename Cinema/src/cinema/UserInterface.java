@@ -23,8 +23,16 @@ public class UserInterface {
 		
 		Theater theater = new Theater(1, 10, 20);
 		
-//		Viewing viewing = new Viewing(cinema.getFilm("Robocop 2"), LocalDateTime.now(), )
-	
+		cinema.addViewing(1, cinema.getFilm("Robocop 2"), LocalDateTime.now());
+		String[] allViewings = cinema.listAllViewing();
+		
+		System.out.println(cinema.getFilm("Robocop 2"));
+		for (String viewing : allViewings) {
+			System.out.println(viewing);
+		}
+		
+		System.out.println(allViewings.length);
+		
 	}
 }
 		
