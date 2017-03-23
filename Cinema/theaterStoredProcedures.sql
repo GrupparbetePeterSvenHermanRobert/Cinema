@@ -4,9 +4,9 @@ DROP procedure IF EXISTS `add_theater`;
 DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `add_theater` (
-	IN theaterId INT,
-    IN seatColumns INT,
-    IN seatRows INT
+	IN theaterId SMALLINT(5) UNSIGNED,
+    IN seatColumns SMALLINT(5) UNSIGNED,
+    IN seatRows SMALLINT(5) UNSIGNED
 )
 BEGIN
 	INSERT INTO theater
@@ -17,7 +17,7 @@ DELIMITER ;
 DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `get_theater_by_id` (
-	IN theaterId INT
+	IN theaterId SMALLINT(5) UNSIGNED
 )
 BEGIN
 	SELECT * FROM theater
@@ -28,7 +28,7 @@ DELIMITER ;
 DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `delete_theater` (
-	IN theaterId INT
+	IN theaterId SMALLINT(5) UNSIGNED
 )
 BEGIN
 	DELETE FROM theater
