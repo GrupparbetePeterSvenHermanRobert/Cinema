@@ -83,7 +83,7 @@ public class Cinema {
 		return filmToReturn;
 	}
 
-	public String[] listAllViewing() {
+	public String[] listAllViewings() {
 		ArrayList<String> allList = new ArrayList<String>();
 		for (Theater teater : theaterList) {
 			String array[] = teater.getViewings();
@@ -127,7 +127,7 @@ public class Cinema {
 	}
 
 	public boolean addViewing(int theaterId, Film film, LocalDateTime start) {
-			if (theaterId < 0 || theaterId < theaterList.size()){
+			if (theaterId > 0 || theaterId < theaterList.size()){
 				return theaterList.get(theaterId).addViewing(film, start);				
 			}
 		return false;
