@@ -89,7 +89,7 @@ public class Cinema {
 		for (Film film : filmList) {
 			filmString += film.toString();
 		}
-		return filmString();
+		return filmString;
 	}
 
 	public String getFilm(String title) {
