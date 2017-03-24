@@ -144,7 +144,7 @@ public class SqlManager {
 			
 			//manager.updateDatabase("INSERT INTO film VALUES('The Hobbit', 125, 'A good fantasy film.')");
 			//result = manager.sendQuery("SELECT * FROM film;");
-			result = manager.callStoredProcedure("get_film_by_title('The Hobbit')");
+			/*result = manager.callStoredProcedure("get_film_by_title('The Hobbit')");
 			
 			for(int i = 0; i < result.size(); i++) {
 				System.out.println((String)(result.get(i).get("title")));
@@ -153,7 +153,11 @@ public class SqlManager {
 			}
 			
 			Film film = new Film(result.get(0));
-			System.out.println(film.toString());
+			System.out.println(film.toString()); */
+			
+			result = manager.callStoredProcedure("get_theater_by_id(0)");
+			Theater theater = new Theater(result.get(0));
+			System.out.println(theater.toString());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

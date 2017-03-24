@@ -3,6 +3,7 @@ package cinema;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -18,6 +19,14 @@ public class Theater {
 	private int seatColumns;
 	/** A set of viewings sorted by time. **/
 	private SortedSet<Viewing> viewingList;
+	
+	/** Create a new theater with the given information. **/
+	public Theater(Map<String, Object> info) {
+		theaterId = (int) info.get("id");
+		seatRows = (int) info.get("seatRows");
+		seatColumns = (int) info.get("seatColumns");
+		viewingList = new TreeSet<Viewing>();
+	}
 	
 	/** Create a new theater.
 	 * @param theaterId -The ID number of this theater.
