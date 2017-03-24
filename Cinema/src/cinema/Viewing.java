@@ -12,6 +12,7 @@ public class Viewing implements Comparable<Viewing> {
 	private Film film;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
+	private int id;
 	private String[] seats;
 
 	/**
@@ -24,11 +25,12 @@ public class Viewing implements Comparable<Viewing> {
 	 * @param seatAmount
 	 *            - Amount of seats in the theater.
 	 */
-	public Viewing(Film film, LocalDateTime startTime, int seatAmount) {
+	public Viewing(Film film, LocalDateTime startTime, int seatAmount, int id) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
 		setEndTime(startTime.plusMinutes(film.getLength()));
 		seats = new String[seatAmount];
+		this.id = id;
 	}
 	
 	//En kommentar...
@@ -36,7 +38,7 @@ public class Viewing implements Comparable<Viewing> {
 	/**
 	 * Overloaded constructor adapted for loading Strings from file. ish
 	 */
-	public Viewing(Film film, LocalDateTime startTime, String[] seats) {
+	public Viewing(Film film, LocalDateTime startTime, String[] seats, int id) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
 		setEndTime(startTime.plusMinutes(film.getLength()));
@@ -45,6 +47,8 @@ public class Viewing implements Comparable<Viewing> {
 		for (int i = 0; i < seats.length; i++) {
 			this.seats[i] = seats[i];
 		}
+		
+		this.id = id;
 	}
 
 	public boolean bookSeat(int seat, String ticketID) {
@@ -78,6 +82,11 @@ public class Viewing implements Comparable<Viewing> {
 	 * @return A string array where each element represents the seat's status. Null = available. **/
 	String[] getSeatStatus() {
 		return seats;
+	}
+	
+	/** Get the ID of this viewing. **/
+	public int getId() {
+		return id;
 	}
 	
 	/** Check weather a given seat is available.
@@ -134,7 +143,7 @@ public class Viewing implements Comparable<Viewing> {
 
 	@Override
 	public String toString() {
-		return film.getTitle() + ", " + startTime.toString() + ", " + endTime.toString();
+		return "Viewing ID: " + id + "\n" + "Title: " + film.getTitle() + "\n" + "Start Time: " + startTime.toString() + "\n" + "End Time: " + endTime.toString();
 	}
 
 	/**
@@ -152,7 +161,7 @@ public class Viewing implements Comparable<Viewing> {
 	/** Main function for testing this class. **/
 	public static void main(String[] args) {
 		Film film = new Film("Some Film Title", "Some Film Description", 120);
-		Viewing viewing = new Viewing(film, LocalDateTime.now().plusDays(5), 3 * 4);
+		Viewing viewing = new Viewing(film, LocalDateTime.now().plusDays(5), 3 * 4, 0);
 		
 		System.out.println(viewing.bookSeat(0, "Some ID"));
 	}
