@@ -3,12 +3,13 @@ USE cinema;
 DELIMITER $$
 USE `cinema`$$
 create procedure `add_seat` (
-IN id SMALLINT(5) UNSIGNED, 
-in tickedID VARCHAR(50),
+IN id int(10) UNSIGNED, 
+IN tickedID VARCHAR(50),
+IN seatNUmber SMALLINT(5) UNSIGNED,
 IN viewingID SMALLINT(5) UNSIGNED)
 BEGIN
 INSERT INTO bookedseat
-VALUES(id, ticketid, viewingID);
+VALUES(id, seatNumber, ticketid, viewingID);
 
  
 
@@ -20,7 +21,7 @@ DELIMITER ;
 DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `get_seat_by_id`(
-in id smallint  (5) UNSIGNED)
+in id INT (10)UNSIGNED)
 
 BEGIN
 SELECT * FROM bookedseat
