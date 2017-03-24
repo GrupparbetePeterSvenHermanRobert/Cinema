@@ -14,6 +14,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `get_theater_by_id`;
+
 DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `get_theater_by_id` (
@@ -24,6 +26,8 @@ BEGIN
     WHERE id = theaterID;
 END$$
 DELIMITER ;
+
+DROP procedure IF EXISTS `delete_theater`;
 
 DELIMITER $$
 USE `cinema`$$

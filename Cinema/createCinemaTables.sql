@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS `cinema`;
 CREATE SCHEMA `cinema`;
 USE cinema;
 
