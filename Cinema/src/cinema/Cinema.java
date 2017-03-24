@@ -71,7 +71,7 @@ public class Cinema {
 	 *            - Filmens längd i minuter
 	 */
 	public void addFilm(String title, int durationInMinutes, String description) {
-
+		
 	}
 
 	/*
@@ -79,10 +79,23 @@ public class Cinema {
 	 */
 	public String getFilms() {
 		ArrayList<Map> result = sqlManager.sendQuery("SELECT * FROM films");
+		Film newFilm;
+		ArrayList<Film> filmList = new ArrayList<Film>();
+		String filmString = new String();
+		for (Map film : result) {
+			newFilm = new Film(result);
+			filmList.add(newFilm);
+		}
+		for (Film film : filmList) {
+			filmString += film.toString();
+		}
+		return filmString();
 	}
 
 	public String getFilm(String title) {
-		sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+		ArrayList<Map> result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+		Film film = Film(result);
+		return(film.toString());
 	}
 
 	public String getAllViewings() {
