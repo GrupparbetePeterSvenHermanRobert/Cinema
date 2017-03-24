@@ -2,6 +2,7 @@ package cinema;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * Den här är användareinterface
@@ -38,6 +39,15 @@ public class Film implements Comparable<Film> {
 		this.title = title;
 		this.description = description;
 		this.length = Duration.ofMinutes(length);
+		period = LocalDateTime.now().plusMonths(2);
+	}
+	
+	/** Create a new film object from the given information.
+	 * @param info -A map where the key is the string name for the column and the object is the data. **/
+	public Film(Map<String, Object> info) {
+		title = (String)info.get("title");
+		description = (String)info.get("description");
+		length = Duration.ofMinutes((long)info.get("duration"));
 		period = LocalDateTime.now().plusMonths(2);
 	}
 	
