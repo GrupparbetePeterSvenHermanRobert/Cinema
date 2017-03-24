@@ -77,13 +77,13 @@ public class Cinema {
 	/*
 	 * 
 	 */
-	public String getFilms() {
-		ArrayList<Map> result = sqlManager.sendQuery("SELECT * FROM films");
+	public String getFilms() throws SQLException {
+		ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM films");
 		Film newFilm;
 		ArrayList<Film> filmList = new ArrayList<Film>();
 		String filmString = new String();
-		for (Map film : result) {
-			newFilm = new Film(result);
+		for (Map<String, Object> film : result) {
+			newFilm = new Film(film);
 			filmList.add(newFilm);
 		}
 		for (Film film : filmList) {
@@ -93,8 +93,8 @@ public class Cinema {
 	}
 
 	public String getFilm(String title) {
-		ArrayList<Map> result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
-		Film film = Film(result);
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+		Film film = Film(result.get(0));
 		return(film.toString());
 	}
 
