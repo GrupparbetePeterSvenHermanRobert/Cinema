@@ -13,8 +13,8 @@ BEGIN
 	WHERE viewingId= id;
    
 END$$
-
 DELIMITER ;
+
 
 USE `cinema`;
 DROP procedure IF EXISTS `add_Viewing`;
@@ -34,5 +34,43 @@ BEGIN
 	VALUE ( id, filmTitle, startTime, endTime, TheaterID);
    
 END$$
+DELIMITER ;
 
+
+USE `cinema`;
+DROP procedure IF EXISTS `get_viewing_by_time`;
+
+DELIMITER $$
+USE `cinema`$$
+CREATE PROCEDURE `get_viewing_by_title` (
+	IN title VARCHAR(50)
+)
+BEGIN
+	SELECT * FROM viewing  
+    WHERE title = viewing.filmTitle;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+USE `cinema`$$
+CREATE PROCEDURE `delete_viewing_by_id` (
+	IN id INT(5) UNSIGNED
+)
+BEGIN
+	DELETE FROM viewing
+    WHERE id = viewing.id;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+USE `cinema`$$
+CREATE PROCEDURE `delete_viewing_by_title` (
+	IN title VARCHAR(50)
+)
+BEGIN
+	DELETE FROM viewing  
+    WHERE title = viewing.filmTitle;
+END$$
 DELIMITER ;
