@@ -142,7 +142,7 @@ public class SqlManager {
 			manager.Initialize();
 			System.out.println("Connection initialized.");
 			
-			manager.updateDatabase("INSERT INTO film VALUES('The Hobbit', 125, 'A good fantasy film.')");
+			//manager.updateDatabase("INSERT INTO film VALUES('The Hobbit', 125, 'A good fantasy film.')");
 			//result = manager.sendQuery("SELECT * FROM film;");
 			result = manager.callStoredProcedure("get_film_by_title('The Hobbit')");
 			
@@ -151,6 +151,9 @@ public class SqlManager {
 				System.out.println((String)(result.get(i).get("description")));
 				System.out.println((long)(result.get(i).get("duration")));
 			}
+			
+			Film film = new Film(result.get(0));
+			System.out.println(film.toString());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
