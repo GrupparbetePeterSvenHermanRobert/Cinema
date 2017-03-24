@@ -8,7 +8,12 @@ package cinema;
  */
 public class Ticket {
 
-
+	public Ticket(String ticketId, Viewing viewing, int seat, int theaterId) {
+		this.ticketId = ticketId;
+		this.viewing = viewing;
+		this.seat = seat;
+		this.theaterId = theaterId;
+	}
 	/** Ticket ID **/
 	private String ticketId;
 
@@ -56,19 +61,7 @@ public class Ticket {
 	}
 
 
-	/**
-	 * the id of the Theater
-	 * 
-	 * @param ticketId
-	 * @param viewing
-	 * @param seat
-	 * @param theaterId
-	 **/
-	public Ticket(String ticketId, Viewing viewing, int seat, int theaterId) {
-		this.ticketId = ticketId;
-		this.viewing = viewing;
-		this.seat = seat;
-		this.theaterId = theaterId;
+	
 	}
 
 
@@ -76,4 +69,4 @@ public class Ticket {
 
 
 
-}
+

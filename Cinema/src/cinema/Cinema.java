@@ -116,7 +116,7 @@ public class Cinema {
 		return false;
 	}
 
-	public boolean bookSeat(int teatreId, LocalDateTime start, int seatId, int seatCount, String ticketId) {
+	public boolean bookSeat(String ticketId) {
 
 	}
 
