@@ -1,5 +1,8 @@
 #Bookedseats (fill_list, get_seat_by_id, clear_by_viewing)
 USE cinema;
+
+DROP PROCEDURE IF EXISTS `add_seat`;
+
 DELIMITER $$
 USE `cinema`$$
 create procedure `add_seat` (
@@ -17,6 +20,7 @@ END $$
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `get_seat_by_id`;
 
 DELIMITER $$
 USE `cinema`$$
@@ -29,6 +33,8 @@ WHERE bookedseat.id = id;
 
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `clear_by_viewing`;
 
 DELIMITER $$
 USE `cinema`$$
@@ -44,8 +50,8 @@ END $$
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `get_seat_by_viewing`;
 
-USE cinema;
 DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `get_seat_by_viewing` (
