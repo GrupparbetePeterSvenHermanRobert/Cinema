@@ -98,8 +98,8 @@ public class Cinema {
 		return(film.toString());
 	}
 
-	public String getAllViewings() {
-		ArrayList<Map> result = sqlManager.sendQuery("SELECT * FROM viewing");
+	public String getAllViewings() throws SQLException {
+		ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing");
 		
 	}
 
