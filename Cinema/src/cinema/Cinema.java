@@ -36,19 +36,15 @@ public class Cinema {
 		}
 	}
 
-	public Ticket createTicket(String ticketID, Viewing viewing, int seat, int theatreId) {
+	public Ticket createTicket(String ticketID, Viewing viewing, int seat, int theaterId) throws SQLException {
 
-		int id = Math.abs(theatreId);
 		Ticket createTicket = null;
-
-		if (id < theaterList.size()) {
-
-			// TODO kontrollera att sittplatsen finns
-			if (viewing.seatAvailable(seat))
-				createTicket = new Ticket(ticketID, viewing, seat, id);
-			else
-				return null;
-		}
+		
+		if (viewing.seatAvailable(seat))
+			createTicket = new Ticket(ticketID, viewing, seat, theaterId);
+		else
+			return null;
+		
 		return createTicket;
 	}
 
@@ -81,20 +77,24 @@ public class Cinema {
 	}
 
 	public String getFilm(String title) {
-		ArrayList<Map<String, Object>> result;
+		ArrayList<Map<String, Object>> result = null;
 		try {
 			result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+			
+			Map<String, Object> filmMap = result.get(0);
+			Film film = new Film(filmMap);
+			
+			return(film.toString());		
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		Map<String, Object> filmMap = result.get(0);
-		Film film = new Film(filmMap);
-		return(film.toString());
+		
+		return null;
 	}
 
 	public String getAllViewings() {
 		try {
-			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing");
+			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing INNER JOIN theater ON viewing.theaterId=theater.id;");
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -103,7 +103,7 @@ public class Cinema {
 
 	public String getAllTheaters() {
 		try {
-			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM theater");
+			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM theater;");
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
