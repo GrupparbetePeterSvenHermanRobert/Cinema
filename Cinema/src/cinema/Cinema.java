@@ -92,13 +92,13 @@ public class Cinema {
 		return null;
 	}
 
-	public String getAllViewings() {
+	public String[] getAllViewings() {
 		try {
 			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing INNER JOIN theater ON viewing.theaterId=theater.id;");
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		return "";
+		return new String[0];
 	}
 
 	public String getAllTheaters() {
@@ -114,7 +114,7 @@ public class Cinema {
 	//
 	// }
 
-	public boolean addViewing(int id, String filmTitle, String startTime, String endTime, int theaterId) {
+	public boolean addViewing(int id, String filmTitle, LocalDateTime startTime, int theaterId) {
 		// SQLManager CALL add_viewing(()
 		return false;
 	}

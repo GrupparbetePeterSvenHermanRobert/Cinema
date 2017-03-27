@@ -3,6 +3,7 @@ package cinema;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 /** Den här är användareinterface
  *@author  Sven  
@@ -18,13 +19,18 @@ public class UserInterface {
 	public static void main(String[] args) {
 			
 		Cinema cinema = new Cinema();
-		cinema.addFilm("Robocop 2", "Action", 240);
-		System.out.println(cinema.getFilms());
+		cinema.addFilm("Robocop 2", 240, "Action");
+		try {
+			System.out.println(cinema.getFilms());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Theater theater = new Theater(1, 10, 20);
 		
-		cinema.addViewing(1, cinema.getFilm("Robocop 2"), LocalDateTime.now());
-		String[] allViewings = cinema.listAllViewings();
+		cinema.addViewing(1, "Robocop 2", LocalDateTime.now(), 0);
+		String[] allViewings = cinema.getAllViewings();
 		
 //		System.out.println(cinema.getFilm("Robocop 2"));
 		
