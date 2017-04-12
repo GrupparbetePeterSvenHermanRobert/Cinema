@@ -1,6 +1,7 @@
 package cinema;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 
 
@@ -141,6 +142,12 @@ public class Viewing implements Comparable<Viewing> {
 		return result;
 	}
 
+	/** Update the seats with the given info.
+	 * @param info -A map where the key is the string name for the column. **/
+	public void updateSeats(Map<String, Object> info) {
+		// TODO Update the seats
+	}
+	
 	@Override
 	public String toString() {
 		return "Viewing ID: " + id + "\n" + "Title: " + film.getTitle() + "\n" + "Start Time: " + startTime.toString() + "\n" + "End Time: " + endTime.toString();

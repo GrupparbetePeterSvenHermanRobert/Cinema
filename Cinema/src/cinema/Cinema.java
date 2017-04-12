@@ -36,28 +36,15 @@ public class Cinema {
 		}
 	}
 
-	/**
-	 * here makes tickets
-	 * 
-	 * @param ticketID
-	 * @param viewing
-	 * @param seat
-	 * @param theatreId
-	 * @return createTicket
-	 */
-	public Ticket createTicket(String ticketID, Viewing viewing, int seat, int theatreId) {
+	public Ticket createTicket(String ticketID, Viewing viewing, int seat, int theaterId) throws SQLException {
 
-		int id = Math.abs(theatreId);
 		Ticket createTicket = null;
-
-		if (id < theaterList.size()) {
-
-			// TODO kontrollera att sittplatsen finns
-			if (viewing.seatAvailable(seat))
-				createTicket = new Ticket(ticketID, viewing, seat, id);
-			else
-				return null;
-		}
+		
+		if (viewing.seatAvailable(seat))
+			createTicket = new Ticket(ticketID, viewing, seat, theaterId);
+		else
+			return null;
+		
 		return createTicket;
 	}
 
@@ -74,9 +61,6 @@ public class Cinema {
 		
 	}
 
-	/*
-	 * 
-	 */
 	public String getFilms() throws SQLException {
 		ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM films");
 		Film newFilm;
@@ -93,31 +77,49 @@ public class Cinema {
 	}
 
 	public String getFilm(String title) {
-		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
-		Film film = Film(result.get(0));
-		return(film.toString());
+		ArrayList<Map<String, Object>> result = null;
+		try {
+			result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+			
+			Map<String, Object> filmMap = result.get(0);
+			Film film = new Film(filmMap);
+			
+			return(film.toString());		
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		
+		return null;
 	}
 
-	public String getAllViewings() throws SQLException {
-		ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing");
-		
+	public String[] getAllViewings() {
+		try {
+			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing INNER JOIN theater ON viewing.theaterId=theater.id;");
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		return new String[0];
 	}
 
 	public String getAllTheaters() {
-		// SQLManagers
+		try {
+			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM theater;");
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		return "";
 	}
 
 	// public String listViewings(int theatreId) {
 	//
 	// }
 
-	public boolean addViewing(int id, String filmTitle, String startTime, String endTime, int theaterId) {
+	public boolean addViewing(int id, String filmTitle, LocalDateTime startTime, int theaterId) {
 		// SQLManager CALL add_viewing(()
 		return false;
 	}
 
-	public boolean bookSeat(String ticketId) {
-
+	public boolean bookSeat(int teatreId, LocalDateTime start, int seatId, int seatCount, String ticketId) {
+		return false;
 	}
-
 }
