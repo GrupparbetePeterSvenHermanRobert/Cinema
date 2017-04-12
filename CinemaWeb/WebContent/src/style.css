@@ -3,6 +3,8 @@
 #main_container {
 	margin-left: 5%;
 	margin-right: 5%;
+	margin-top: 0%;
+	margin-bottom: 0%;
 	width: 90%;
 	text-align: center;
 	
@@ -26,6 +28,10 @@ nav, footer {
 article {
 	flex: 1;
 	background: linear-gradient(hsl(233, 100%, 80%), hsl(233, 100%, 90%));/*hsl(233, 100%, 85%);*/
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }
 
 #admin_nav {
@@ -35,4 +41,17 @@ article {
 p {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+div {
+	margin: 10px;
+	flex: 1;
+}
+
+option, select {
+	background: transparent;
+	width: 90%;
+	border-style: none;
+	margin-bottom: 5px;
+	border-color: transparent;
 }
