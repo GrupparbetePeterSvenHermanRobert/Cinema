@@ -28,6 +28,10 @@ article {
 	background: linear-gradient(hsl(233, 100%, 80%), hsl(233, 100%, 90%));/*hsl(233, 100%, 85%);*/
 }
 
+#admin_nav {
+	background: hsl(233, 30%, 65%);
+}
+
 p {
 	margin-top: 10px;
 	margin-bottom: 10px;
