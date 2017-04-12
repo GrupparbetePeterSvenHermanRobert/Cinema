@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+#main_container {
+	margin-left: 5%;
+	margin-right: 5%;
+	width: 90%;
+	text-align: center;
+	
+	display: flex;
+	flex-flow: column wrap;
+}
+
+header {
+	flex: 1;
+	background: hsl(233, 100%, 42%);
+	color: white;
+}
+
+nav, footer {
+	flex: 1;
+	background: hsl(233, 40%, 60%);
+}
+
+article {
+	flex: 1;
+	background: linear-gradient(hsl(233, 100%, 80%), hsl(233, 100%, 90%));/*hsl(233, 100%, 85%);*/
+}
