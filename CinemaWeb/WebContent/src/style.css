@@ -60,7 +60,11 @@ div {
 
 #book_ticket {
 	flex: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }
+
 option, select {
 	background: transparent;
 	width: 90%;
@@ -70,6 +74,7 @@ option, select {
 }
 
 input[type="button"] {
+	flex: 1;
 	width: 160px;
 	height: 60px;
 	background: hsl(233, 100%, 60%);
