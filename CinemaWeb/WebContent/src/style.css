@@ -3,6 +3,8 @@
 #main_container {
 	margin-left: 5%;
 	margin-right: 5%;
+	margin-top: 0%;
+	margin-bottom: 0%;
 	width: 90%;
 	text-align: center;
 
@@ -26,9 +28,56 @@ nav, footer {
 article {
 	flex: 1;
 	background: linear-gradient(hsl(233, 100%, 80%), hsl(233, 100%, 90%));/*hsl(233, 100%, 85%);*/
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+#admin_nav {
+	background: hsl(233, 30%, 65%);
 }
 
 p {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+div {
+	margin: 10px;
+	flex: 1;
+}
+
+#film_info_div {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+}
+
+#film_info {
+	flex: 10;
+}
+
+#book_ticket {
+	flex: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+option, select {
+	background: transparent;
+	width: 90%;
+	border-style: none;
+	margin-bottom: 5px;
+	border-color: transparent;
+}
+
+input[type="button"] {
+	flex: 1;
+	width: 160px;
+	height: 60px;
+	background: hsl(233, 100%, 60%);
+	color: white;
+	border-radius: 20px;
 }
