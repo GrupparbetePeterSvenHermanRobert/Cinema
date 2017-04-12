@@ -8,6 +8,7 @@
 	
 	display: flex;
 	flex-flow: column wrap;
+	justify-content: center;
 }
 
 header {
@@ -19,9 +20,15 @@ header {
 nav, footer {
 	flex: 1;
 	background: hsl(233, 40%, 60%);
+	color: white;
 }
 
 article {
 	flex: 1;
 	background: linear-gradient(hsl(233, 100%, 80%), hsl(233, 100%, 90%));/*hsl(233, 100%, 85%);*/
+}
+
+p {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
