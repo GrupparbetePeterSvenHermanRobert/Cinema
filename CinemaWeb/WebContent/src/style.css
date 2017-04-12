@@ -48,10 +48,31 @@ div {
 	flex: 1;
 }
 
+#film_info_div {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+}
+
+#film_info {
+	flex: 10;
+}
+
+#book_ticket {
+	flex: 1;
+}
 option, select {
 	background: transparent;
 	width: 90%;
 	border-style: none;
 	margin-bottom: 5px;
 	border-color: transparent;
+}
+
+input[type="button"] {
+	width: 160px;
+	height: 60px;
+	background: hsl(233, 100%, 60%);
+	color: white;
+	border-radius: 20px;
 }
