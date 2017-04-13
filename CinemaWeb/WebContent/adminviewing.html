@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width">
-	<meta charset="UTF-8">
-	<meta name="author" content="Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg">
-	<link rel="icon" href="media/cinema.ico">
-	<link rel="stylesheet" href="src/style.css">
-	<link rel="stylesheet" href="src/navbar.css">
-	<title>Cinema</title>
+<meta name="viewport" content="width=device-width">
+<meta charset="UTF-8">
+<meta name="author"
+	content="Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg">
+<link rel="icon" href="media/cinema.ico">
+<link rel="stylesheet" href="src/style.css">
+<link rel="stylesheet" href="src/navbar.css">
+<title>Cinema</title>
 </head>
 <body>
 	<div id="main_container">
@@ -23,15 +24,49 @@
 		</nav>
 		<nav id="admin_nav">
 			<ul>
-			<li><a href="filmer.html">Hantera filmer</a></li>
-			<li><a href="visningar.html">Hantera visningar</a></li>
+				<li><a href="filmer.html">Hantera filmer</a></li>
+				<li><a href="visningar.html">Hantera visningar</a></li>
 			</ul>
 		</nav>
 		<article>
-			<h1>Välkommen till vår biograf!</h1>
+			<div>
+				<select>
+					<option value="1">Salon 1</option>
+					<option value="2">Salon 2</option>
+					<option value="3">Salon 3</option>
+					<option value="4">Salon 4</option>
+				</select>
+				
+				 <select size="25">
+					<option value="1">Viewing 1</option>
+					<option value="2">Viewing 2</option>
+					<option value="3">Viewing 3</option>
+					<option value="4">Viewing 4</option>
+					<option value="5">Viewing 5</option>
+					<option value="6">Viewing 6</option>
+					<option value="7">Viewing 7</option>
+					<option value="8">Viewing 8</option>
+				</select>
+			</div>
+			<div id="film_info_div">
+				<div id="film_info">
+					<h3>Filmtitel</h3>
+					<p>genre utgivningsår</p>
+					<p>speltid åldersgräns</p>
+					<p>Beskrivning</p>
+				</div>
+				<div id="film_info">
+					<h3>Visning Salong</h3>
+					<p>Datum</p>
+					<p>Starttid - sluttid</p>
+					<p>Salonginformation</p>
+				</div>
+
+			</div>
 		</article>
 		<footer>
-			<p>&copy; 2017, Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg, All Rights Reserved.</p>
+			<p>&copy; 2017, Gustaf Peter Hultgren, Robert Fängström, Sven
+				Andersson, Herman Dackenberg, All Rights Reserved.</p>
 		</footer>
 	</div>
 </body>
