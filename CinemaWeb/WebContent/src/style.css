@@ -85,9 +85,20 @@ input[type="button"] {
 	margin-left: 10px;
 }
 
-.seat {
-	width: 20px;
-	height: 20px;
+input[type="button"].seat {
+	width: 30px;
+	height: 30px;
+	margin: 2px;
+	background: grey;
+	border-radius: 5px;
+}
+
+input[type="button"].seat2 {
+	width: 30px;
+	height: 30px;
+	margin: 2px;
+	background: red;
+	border-radius: 5px;
 }
 
 ul {
