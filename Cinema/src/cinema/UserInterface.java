@@ -21,8 +21,10 @@ public class UserInterface {
 
 	/** Det här är mainloopen 
  * @param args - Eventuella programargument
- * @return nothing**/
-	public static void main(String[] args) {
+ * @return nothing
+	 * @throws IOException 
+	 * @throws SQLException **/
+	public static void main(String[] args) throws IOException, SQLException {
 			
 		Cinema cinema = new Cinema();
 		cinema.addFilm("Robocop 2", 240, "Action");
@@ -107,7 +109,7 @@ public class UserInterface {
 				String viewingID = reader.readLine();
 				System.out.println("Skriv in använare Id ( Telefonnr)");
 				String userId = reader.readLine();
-				cinema.bookSeat("teaterId, StartTid, seat,"+userId);
+				//cinema.bookSeat(teaterId, StartTid, seat, 1, userId);
 				System.out.println("Du har bokat följande film" );
 				
 			
