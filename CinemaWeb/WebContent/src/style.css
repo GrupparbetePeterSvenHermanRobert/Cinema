@@ -108,3 +108,8 @@ input[type="button"].seat2 {
 ul {
 	list-style-type: none;
 }
+
+/* Cosmetics for the index page. */
+#index_article {
+	height: 350px;
+}
