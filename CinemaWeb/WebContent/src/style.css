@@ -83,6 +83,12 @@ input[type="button"] {
 	margin-botton: 10px;
 	margin-right: 10px;
 	margin-left: 10px;
+	
+	border-top-color: hsl(233, 30%, 75%);
+	border-left-color: hsl(233, 30%, 75%);
+	
+	border-bottom-color: hsl(233, 30%, 55%);
+	border-right-color: hsl(233, 30%, 55%);
 }
 
 input[type="button"].seat {
@@ -95,6 +101,11 @@ input[type="button"].seat {
 
 input[type="button"].local {
 	background: hsl(233, 30%, 65%);
+	border-top-color: hsl(233, 30%, 55%);
+	border-left-color: hsl(233, 30%, 55%);
+	
+	border-bottom-color: hsl(233, 30%, 75%);
+	border-right-color: hsl(233, 30%, 75%);
 }
 
 input[type="button"].seat2 {
