@@ -1,6 +1,12 @@
 @CHARSET "UTF-8";
 
-#main_container {
+body {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+#main_container {	
 	margin-left: 5%;
 	margin-right: 5%;
 	margin-top: 0%;
@@ -17,6 +23,7 @@ header {
 	flex: 1;
 	background: hsl(233, 100%, 42%);
 	color: white;
+	width: 100%;
 }
 
 nav, footer {
