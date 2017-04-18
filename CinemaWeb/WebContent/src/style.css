@@ -84,11 +84,11 @@ input[type="button"] {
 	margin-right: 10px;
 	margin-left: 10px;
 	
-	border-top-color: hsl(233, 30%, 75%);
-	border-left-color: hsl(233, 30%, 75%);
+	border-top-color: hsl(233, 100%, 85%);
+	border-left-color: hsl(233, 100%, 85%);
 	
-	border-bottom-color: hsl(233, 30%, 55%);
-	border-right-color: hsl(233, 30%, 55%);
+	border-bottom-color: hsl(233, 100%, 55%);
+	border-right-color: hsl(233, 100%, 55%);
 }
 
 input[type="button"].seat {
@@ -99,7 +99,7 @@ input[type="button"].seat {
 	border-radius: 5px;
 }
 
-input[type="button"].local {
+input[type="button"]:disabled {
 	background: hsl(233, 30%, 65%);
 	border-top-color: hsl(233, 30%, 55%);
 	border-left-color: hsl(233, 30%, 55%);
