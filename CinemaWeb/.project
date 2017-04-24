@@ -3,6 +3,7 @@
 	<name>CinemaWeb</name>
 	<comment></comment>
 	<projects>
+		<project>Cinema</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
