@@ -51,6 +51,8 @@ public class Viewing implements Comparable<Viewing> {
 		
 		this.id = id;
 	}
+	
+	public Viewing
 
 	public boolean bookSeat(int seat, String ticketID) {
 		boolean success = false;

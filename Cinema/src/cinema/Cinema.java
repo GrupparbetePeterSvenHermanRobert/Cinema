@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
  * @version 0.1
  */
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -56,27 +57,41 @@ public class Cinema {
 	 *            - Beskrivning av aktuell film
 	 * @param durationInMinutes
 	 *            - Filmens längd i minuter
+	 * @throws SQLException 
 	 */
-	public void addFilm(String title, int durationInMinutes, String description) {
-		
+	public void addFilm(String title, int durationInMinutes, String description) throws SQLException {
+		String query = "add_film(" + title + "', '" + description + "', '" + durationInMinutes + "');";
+		sqlManager.callStoredProcedure(query);
 	}
 
-	public String getFilms() throws SQLException {
-		ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM films");
-		Film newFilm;
+	public List<Film> getFilms(String orderByColumn, boolean ascending) throws SQLException {
+		String query = "";
+		if(orderByColumn.equalsIgnoreCase("title")) {
+			if(ascending)
+				query = "get_films_order_by_title();";
+			else
+				query = "get_films_order_by_title_desc();";
+		}
+		else if(orderByColumn.equalsIgnoreCase("id")) {
+				if(ascending)
+					query = "get_films_order_by_id();";
+				else
+					query = "get_films_order_by_id_desc();";
+		}
+		
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure(query);
+		
+		Film newFilm;		
 		ArrayList<Film> filmList = new ArrayList<Film>();
-		String filmString = new String();
 		for (Map<String, Object> film : result) {
 			newFilm = new Film(film);
 			filmList.add(newFilm);
 		}
-		for (Film film : filmList) {
-			filmString += film.toString();
-		}
-		return filmString;
+
+		return filmList;
 	}
 
-	public String getFilm(String title) {
+	public Film getFilm(String title) {
 		ArrayList<Map<String, Object>> result = null;
 		try {
 			result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
@@ -84,7 +99,7 @@ public class Cinema {
 			Map<String, Object> filmMap = result.get(0);
 			Film film = new Film(filmMap);
 			
-			return(film.toString());		
+			return film;	
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -92,13 +107,20 @@ public class Cinema {
 		return null;
 	}
 
-	public String[] getAllViewings() {
+	public List<Viewing> getAllViewings() {	
+		List<Viewing> viewings = new ArrayList<Viewing>();
+		
 		try {
-			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM viewing INNER JOIN theater ON viewing.theaterId=theater.id;");
+			ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_viewings()");
+			
+			for(Map<String, Object> row : result) {
+				viewings.add(new Viewing(row));
+			}
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
-		return new String[0];
+		return viewings;
 	}
 
 	public String getAllTheaters() {

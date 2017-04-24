@@ -38,3 +38,51 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `get_films_order_by_title`;
+
+DELIMITER $$
+USE `cinema` $$
+CREATE PROCEDURE `get_films_order_by_title` ()
+BEGIN
+	SELECT * FROM film
+    ORDER BY title ASC;
+END $$
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `get_films_order_by_id`;
+
+DELIMITER $$
+USE `cinema` $$
+CREATE PROCEDURE `get_films_order_by_id` ()
+BEGIN
+	SELECT * FROM film
+    ORDER BY id ASC;
+END $$
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `get_films_order_by_title_desc`;
+
+DELIMITER $$
+USE `cinema` $$
+CREATE PROCEDURE `get_films_order_by_title_desc` ()
+BEGIN
+	SELECT * FROM film
+    ORDER BY title DESC;
+END $$
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `get_films_order_by_id_desc`;
+
+DELIMITER $$
+USE `cinema` $$
+CREATE PROCEDURE `get_films_order_by_id_desc` ()
+BEGIN
+	SELECT * FROM film
+    ORDER BY id DESC;
+END $$
+
+DELIMITER ;
