@@ -20,12 +20,12 @@
 			<ul>
 				<li><a href="info.html"><input type="button" value="Info"></a></li>
 				<li><a href="filmbooking.html"><input type="button" value="Films & Tickets"></a></li>
-				<li><a href="adminfilm.html"><input type="button" value="Admin" disabled></a></li>
+				<li><input type="button" value="Admin" disabled></li>
 			</ul>
 		</nav>
 		<nav id="admin_nav">
 			<ul>
-				<li><a href="adminfilm.html"><input type="button" value="Hantera filmer" disabled></a></li>
+				<li><input type="button" value="Hantera filmer" disabled></li>
 				<li><a href="adminviewing.html"><input type="button" value="Hantera visningar"></a></li>
 			</ul>
 		</nav>
