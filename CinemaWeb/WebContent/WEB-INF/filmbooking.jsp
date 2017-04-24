@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta name="viewport" content="width=device-width">
@@ -28,13 +30,13 @@
 		<article>
 			<div>
 				<select size="25">
-					<option value="Rambo 19">Rambo 19 	Action	2018</option>
+					<!-- <option value="Rambo 19">Rambo 19 	Action	2018</option>
 					<option value="The Room">The Room Drama	2003</option>
 					<option value="Batman dead or alive">Batman dead or alive Action	2018</option>
 					<option value="Nisse i brevlÃ¥dan">Nisse i brevlÃ¥dan Barn	2018</option>
 					<option value="StarTreck 17">StarTreck 27 Sify 2019</option>
 					<option value="Indiana Jones 7">Indiana Jones 7 Action 2019</option>
-					
+					-->
 				</select>
 			</div>
 			<div id="film_info_div">

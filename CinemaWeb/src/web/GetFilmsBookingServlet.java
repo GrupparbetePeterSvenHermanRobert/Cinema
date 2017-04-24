@@ -27,7 +27,21 @@ public class GetFilmsBookingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Cinema cinema= new Cinema();
+		String id = request.getParameter(getServletInfo());
+		try{
+		
+	//	response.sendRedirect("/WEB-INF/filmbooking.jsp");
+		
+		
+		
+		
+		
+		
+		request.getRequestDispatcher("/WEB-INF/filmbooking.jsp").forward(request, response);
+		
+		
+	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
