@@ -36,15 +36,15 @@ public class GetFilmsAdminServlet extends HttpServlet {
 		
 		try {
 			List<Film> films = cinema.getFilms("title", true);
+			request.setCharacterEncoding("UTF-8");
+			int id = Integer.parseInt(request.getParameter("id"));
 			
-			//request.setAttribute("films", films);
-			//request.setCharacterEncoding("UTF-8");
+			request.setAttribute("films", films);
+			request.setAttribute("film", films.get(id));
 
-			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminfilm.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminfilm.jsp");
 			if(dispatcher != null)
-				dispatcher.forward(request, response);*/
-			
-			response.getWriter().append("Success!");
+				dispatcher.forward(request, response);
 			
 		} catch (SQLException | ClassNotFoundException e) {
 			response.getWriter().append("Error: " + e.getMessage());
