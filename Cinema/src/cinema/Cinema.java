@@ -3,6 +3,8 @@ package cinema;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 /**this is the Ticket
  * @author Sven
@@ -112,9 +114,18 @@ public class Cinema {
 		
 		try {
 			ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_viewings()");
-			
+			Viewing viewing;
 			for(Map<String, Object> row : result) {
-				viewings.add(new Viewing(row));
+				int id = (int)row.get("id");
+				String filmTitle = (String)row.get("filmTitle");
+				int theaterId = (int)row.get("theaterId");
+				Timestamp time = (Timestamp)row.get("startTime");
+				LocalDateTime startTime = time.toLocalDateTime();
+				time = (Timestamp)row.get("endTime");
+				LocalDateTime endTime = time.toLocalDateTime();
+				
+				// TODO Check if the film exists.
+				// TODO Add the viewing to the list.
 			}
 			
 		} catch (SQLException e) {
