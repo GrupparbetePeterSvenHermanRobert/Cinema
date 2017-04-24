@@ -46,7 +46,7 @@ public class GetFilmsAdminServlet extends HttpServlet {
 			
 			response.getWriter().append("Success!");
 			
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			response.getWriter().append("Error: " + e.getMessage());
 		}
 	}

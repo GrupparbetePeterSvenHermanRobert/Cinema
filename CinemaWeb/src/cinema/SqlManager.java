@@ -49,36 +49,49 @@ public class SqlManager {
 		connection = DriverManager.getConnection(uri, user, password);
 	}
 	
+	public Connection getConnection() throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?useSSL=false", "root", "root");
+	}
+	
 	/** Call the specified procedure. 
 	 * @param sql -The SQL script to call the stored procedure "procedure_name(input)".
 	 * @return An array list of maps, where each map represents a row of data with the columns name as key.
-	 * @throws SQLException **/
-	public ArrayList<Map<String, Object>> callStoredProcedure(String sql) throws SQLException {
-		String script = "CALL " + sql;
-		
-		CallableStatement statement = connection.prepareCall(script);
-		ResultSet result = null;
-		
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException **/
+	public ArrayList<Map<String, Object>> callStoredProcedure(String sql) throws SQLException, ClassNotFoundException {
 		ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-		if(statement.execute()) {
-			result = statement.getResultSet();
-		
-			while(result.next()) {
-				Map<String, Object> row = new HashMap<String, Object>();
-				ResultSetMetaData data = result.getMetaData();
-				
-				int count = data.getColumnCount();
-				for(int i = 1; i <= count; i++) {
-					row.put(data.getColumnName(i), result.getObject(i));
+		try {
+			String script = "CALL " + sql;
+			
+			Connection connection = getConnection();
+			CallableStatement statement = connection.prepareCall(script);
+			ResultSet result = null;
+			
+			if(statement.execute()) {
+				result = statement.getResultSet();
+			
+				while(result.next()) {
+					Map<String, Object> row = new HashMap<String, Object>();
+					ResultSetMetaData data = result.getMetaData();
+					
+					int count = data.getColumnCount();
+					for(int i = 1; i <= count; i++) {
+						row.put(data.getColumnName(i), result.getObject(i));
+					}
+					
+					list.add(row);
 				}
-				
-				list.add(row);
 			}
+			
+			result.close();
+			statement.close();
+			
+		} finally {
+			if (connection != null)
+				connection.close();
 		}
-		
-		result.close();
-		statement.close();
 		
 		return list;
 	}
@@ -133,8 +146,9 @@ public class SqlManager {
 		}
 	}
 	
-	/** Main loop to test the class. **/
-	public static void main(String[] args) {
+	/** Main loop to test the class. 
+	 * @throws ClassNotFoundException **/
+	public static void main(String[] args) throws ClassNotFoundException {
 		SqlManager manager = SqlManager.getSingleton();
 		
 		ArrayList<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
@@ -155,7 +169,7 @@ public class SqlManager {
 			Film film = new Film(result.get(0));
 			System.out.println(film.toString()); */
 			
-			result = manager.callStoredProcedure("get_theater_by_id(0)");
+			result = manager.callStoredProcedure("get_theater_by_id(0);");
 			Theater theater = new Theater(result.get(0));
 			System.out.println(theater.toString());
 			

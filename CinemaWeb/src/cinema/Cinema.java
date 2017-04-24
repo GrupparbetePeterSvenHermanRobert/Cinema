@@ -26,16 +26,13 @@ public class Cinema {
 
 	public Cinema() {
 		sqlManager = SqlManager.getSingleton();
+	}
+	
+	public void close() {
 		try {
-			sqlManager.Initialize();
+			sqlManager.close();
 		} catch (SQLException e) {
-			System.err.print(e.getMessage());
-		} finally {
-			try {
-				sqlManager.close();
-			} catch (SQLException e) {
-				System.err.print(e.getMessage());
-			}
+			e.printStackTrace();
 		}
 	}
 
@@ -60,13 +57,14 @@ public class Cinema {
 	 * @param durationInMinutes
 	 *            - Filmens längd i minuter
 	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void addFilm(String title, int durationInMinutes, String description) throws SQLException {
+	public void addFilm(String title, int durationInMinutes, String description) throws SQLException, ClassNotFoundException {
 		String query = "add_film(" + title + "', '" + description + "', '" + durationInMinutes + "');";
 		sqlManager.callStoredProcedure(query);
 	}
 
-	public List<Film> getFilms(String orderByColumn, boolean ascending) throws SQLException {
+	public List<Film> getFilms(String orderByColumn, boolean ascending) throws SQLException, ClassNotFoundException {
 		String query = "";
 		if(orderByColumn.equalsIgnoreCase("title")) {
 			if(ascending)
@@ -93,23 +91,18 @@ public class Cinema {
 		return filmList;
 	}
 
-	public Film getFilm(String title) {
+	public Film getFilm(String title) throws ClassNotFoundException, SQLException {
 		ArrayList<Map<String, Object>> result = null;
-		try {
-			result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
-			
-			Map<String, Object> filmMap = result.get(0);
-			Film film = new Film(filmMap);
-			
-			return film;	
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
 		
-		return null;
+		result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+		
+		Map<String, Object> filmMap = result.get(0);
+		Film film = new Film(filmMap);
+		
+		return film;
 	}
 
-	public List<Viewing> getAllViewings() {	
+	public List<Viewing> getAllViewings() throws ClassNotFoundException {	
 		List<Viewing> viewings = new ArrayList<Viewing>();
 		
 		try {
