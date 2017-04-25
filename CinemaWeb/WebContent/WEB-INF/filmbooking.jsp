@@ -3,7 +3,6 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta name="viewport" content="width=device-width">
@@ -29,25 +28,33 @@
 		</nav>
 		<article>
 			<div>
-				<select size="25">
-					<!-- <option value="Rambo 19">Rambo 19 	Action	2018</option>
-					<option value="The Room">The Room Drama	2003</option>
-					<option value="Batman dead or alive">Batman dead or alive Action	2018</option>
-					<option value="Nisse i brevlÃ¥dan">Nisse i brevlÃ¥dan Barn	2018</option>
-					<option value="StarTreck 17">StarTreck 27 Sify 2019</option>
-					<option value="Indiana Jones 7">Indiana Jones 7 Action 2019</option>
-					-->
-				</select>
+			<%int i = 0;
+			%>
+			<ul>
+			
+			<c:set var="id" value="0" scope="page"/>
+					<c:forEach items="${films}" var="film">
+						<li><a href="GetFilmsBooking?id=${Integer.toString(id)}" class="film_link">
+							&bull; <c:out value="${film.title}"/>
+						</a></li>
+						<c:set var="id" value="${id + 1}" scope="page"/>
+					</c:forEach>		
+			
+			</ul>
 			</div>
+			
+			
 			<div id="film_info_div">
 				<div id="film_info">
-					<h3>Rambo 19</h3>
-					<p>Action	2018</p>
-					<p>130	15</p>
-					<p>Rambo och Emil trÃ¤ffar sina vÃ¤nner. Allt Ã¤r Emils fel sÃ¥ grillpartyt blir en katarsrof. <br>
-					Indianer och Cowboys anfaller med pickadoller och pilar.<br> 
-					NÃ¤r striden Ã¤r avslutas sammlas alla och grillar marchmallows.
-					</p>
+					<p><c:out value="${film.title}"/> <br></p>
+					<p><c:out value="${film.description}"/> <br></p>
+					<p><c:out value="${film.genre}"/><br></p>
+					<p><c:out value="${film.year}"/><br></p>
+					<p>PGI <c:out value="${film.pgi}"/> <br></p>  
+					<p><c:out value="${film.length}"/> Min</p> 
+					
+			
+					
 				</div>
 				<div id="book_ticket">
 					<a href="index.html"><input type="button" value="Back"></a>
