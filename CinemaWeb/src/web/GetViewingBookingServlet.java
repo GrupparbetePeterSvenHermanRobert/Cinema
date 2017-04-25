@@ -39,16 +39,15 @@ public class GetViewingBookingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Cinema cinema= new Cinema();
-	
+		Cinema cinema= new Cinema();	
 		String filmtitle = request.getParameter("title");
-		
 
 		try {
 			Film film = cinema.getFilm(filmtitle);
-			List<Viewing> view = cinema.getAllViewings();
+			List<Viewing> viewings= cinema.getAllViewings();
+		
 			request.setAttribute("film",film);
-			request.setAttribute("viewin",film);
+			request.setAttribute("viewings",viewings);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

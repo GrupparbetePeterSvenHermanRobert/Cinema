@@ -34,20 +34,34 @@
 					int i = 0;
 				%>
 				<ul>
-
-					<c:forEach items="${viewing}" var="film">
-						<li><a href="GetViewingBooking?title=$({title)}"
-							class="film_link"> &bull; <c:out value="${viewing.title}" />
+				<c:set var="id" value="0" scope="page"/>
+					<c:forEach items="${viewings}" var="viewing">
+						<li><a href="GetViewingBooking?title=${title}&${id}"class="film_link">
+						 &bull; <c:out value="${film.title}" />						 
 
 						</a></li>
-						<c:set var="id" value="${id + 1}" scope="page" />
+						<c:set var="id" value="${id + 1}" scope="page"/>
 					</c:forEach>
 
 				</ul>
+			</div>			
+			
+			
+			
+			<div id="film_info_div">
+				<div id="film_info">
+					<p><c:out value="${film.title}"/> <br></p>
+					<p><c:out value="${film.description}"/> <br></p>
+					<p><c:out value="${film.genre}"/><br></p>
+					<p><c:out value="${film.year}"/><br></p>
+					<p>PGI <c:out value="${film.pgi}"/> <br></p>  
+					<p><c:out value="${film.length}"/> Min</p> 
 			</div>
+			</div>
+			
 
-
-
+<div>
+</div>
 	
 		<div id="book_ticket">
 			<a href="index.html"><input type="button" value="Back"></a> <a
