@@ -1,3 +1,5 @@
+DROP SCHEMA cinema;
+CREATE SCHEMA cinema;
 USE cinema;
 
 DROP TABLE IF EXISTS theater;
