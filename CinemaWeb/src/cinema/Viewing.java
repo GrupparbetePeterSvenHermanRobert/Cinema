@@ -13,6 +13,8 @@ public class Viewing implements Comparable<Viewing> {
 	private Film film;
 	private String filmTitle;
 	private String time;
+	private String end;
+	private String date;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private int id;
@@ -38,7 +40,10 @@ public class Viewing implements Comparable<Viewing> {
 		this.setTheaterId(theaterId);
 		
 		setFilmTitle(film.getTitle());
-		setTime(startTime.toString());
+		String stringArr[] = startTime.toString().split("T");
+		setTime(stringArr[1]);
+		setDate(stringArr[0]);
+		setEnd(endTime.toString().split("T")[1]);
 	}
 	
 	//En kommentar...
@@ -60,7 +65,10 @@ public class Viewing implements Comparable<Viewing> {
 		this.setTheaterId(theaterId);
 		
 		setFilmTitle(film.getTitle());
-		setTime(startTime.toString());
+		String stringArr[] = startTime.toString().split("T");
+		setTime(stringArr[1]);
+		setDate(stringArr[0]);
+		setEnd(endTime.toString().split("T")[1]);
 	}
 
 	public boolean bookSeat(int seat, String ticketID) {
@@ -202,5 +210,21 @@ public class Viewing implements Comparable<Viewing> {
 
 	public void setTheaterId(int theaterId) {
 		this.theaterId = theaterId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
 	}
 }

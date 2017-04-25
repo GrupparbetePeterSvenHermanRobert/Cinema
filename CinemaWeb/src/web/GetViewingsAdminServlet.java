@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cinema.Cinema;
+import cinema.Film;
 import cinema.Viewing;
 
 /**
@@ -39,7 +40,13 @@ public class GetViewingsAdminServlet extends HttpServlet {
 		try {
 			List<Viewing> viewings = cinema.getAllViewings();
 			
+			request.setAttribute("viewing", viewings.get(id));
 			request.setAttribute("viewings", viewings);
+			
+			Film film = cinema.getFilm(viewings.get(id).getFilmTitle());
+			if(film != null)
+				request.setAttribute("film", film);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminviewing.jsp");
 			
 			if(dispatcher != null) {

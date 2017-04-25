@@ -47,10 +47,13 @@
 				</select>
 				
 				<ul>
-					<c:out value="${viewings.size()}" />
+					<c:set var="id" value="0" scope="page"/>
 					<c:forEach items="${viewings}" var="viewing">
-						<li><a href="GetViewingsAdmin?id=0"><c:out value="${viewing.filmTitle}"/>,
-						 <c:out value="${viewing.time}"/></a></li>
+						<li><a href="GetViewingsAdmin?id=${Integer.toString(id)}" class="film_link">
+						<c:out value="${viewing.filmTitle}"/>, 
+						<c:out value="${viewing.date}"/>, Kl. 
+						<c:out value="${viewing.time}"/></a></li>
+						<c:set var="id" value="${id + 1}" scope="page"/>
 					</c:forEach>
 				</ul>
 				<input type="button" value="Ta Bort Visning">
@@ -72,18 +75,16 @@
 			</div>
 			<div id="film_info_div">
 				<div id="film_info">
-					<h3>Indiana Jöns	</h3>
-					<p>Komedi 2018</p>
-					<p>100min 15år</p>
-					<p>Inidana springer omkring och tar hand om pisker och nitar. <br>
-					Tjyvar och banditer försöker fånga Jöns och fastnar i lera.<br>
-					Allt är som vanligt Emils fel</p>
+					<h3><c:out value="${film.title}"/></h3>
+					<p><c:out value="${film.genre}"/>, <c:out value="${film.year}"/></p>
+					<p><c:out value="${film.length}"/> min, <c:out value="${film.pgi}"/> år</p>
+					<p><c:out value="${film.description}"/></p>
 				</div>
 				<div id="film_info">
-					<h3>Salong 2 Emil</h3>
-					<p>2018-05-20</p>
-					<p>18:00 - 21:00</p>
-					<p>Kuddar och hörslinga finns till alla.</p>
+					<h3>Salong <c:out value="${viewing.theaterId}"/></h3>
+					<p><c:out value="${viewing.date}"/></p>
+					<p><c:out value="${viewing.time}"/> - <c:out value="${viewing.end}"/></p>
+					<p><!-- Theater Information to be added! -->Kuddar och hörslinga finns till alla.</p>
 				</div>
 
 

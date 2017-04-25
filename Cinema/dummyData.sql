@@ -30,6 +30,9 @@ VALUES(2, 8, 15);
 INSERT INTO viewing
 VALUES(0, 'Matrix', "2017-05-30 19:30:00", "2017-05-30 21:35:00", 0);
 
+INSERT INTO viewing
+VALUES(0, 'Star Wars: The Clone Wars', "2017-05-30 20:00", "2017-05-30 22:05:00", 1);
+
 INSERT INTO bookedseat
 VALUES(0, 1, NULL, 0);
 INSERT INTO bookedseat
