@@ -91,7 +91,7 @@ public class Theater {
 	 * @param start -The start time for this viewing.
 	 * @return True if successful, false if the time is occupied. **/
 	public boolean addViewing(Film film, LocalDateTime start, int viewingId) {
-		return viewingList.add(new Viewing(film, start, seatRows * seatColumns, viewingId));
+		return viewingList.add(new Viewing(film, start, seatRows * seatColumns, viewingId, theaterId));
 	}
 	
 	/** Add a new viewing to the theater.
@@ -100,7 +100,7 @@ public class Theater {
 	 * @param seatData -The data for the seat bookings.
 	 * @return True if successful, false if the time is occupied. **/
 	public boolean addViewing(Film film, LocalDateTime start, String seatData, int viewingId) {
-		return viewingList.add(new Viewing(film, start, seatRows * seatColumns, viewingId));
+		return viewingList.add(new Viewing(film, start, seatRows * seatColumns, viewingId, theaterId));
 	}
 	
 	/** Get the selected viewing if it exists.
@@ -108,7 +108,7 @@ public class Theater {
 	 * @param start -The start time for this viewing.
 	 * @return The desired viewing or null if it was not found. **/
 	public Viewing getViewing(Film film, LocalDateTime start) {
-		Viewing viewing = new Viewing(film, start, 1, 0); // Create a new viewing as a search object.
+		Viewing viewing = new Viewing(film, start, 1, 0, theaterId); // Create a new viewing as a search object.
 		
 		for(Viewing view : viewingList) {
 			if(view.compareTo(viewing) == 0)
@@ -150,7 +150,7 @@ public class Theater {
 	 * @param ticketId -The ID of the ticket. 
 	 * @return True if the seat was available, else false.**/
 	public boolean bookSeat(LocalDateTime start, int seatId, String ticketId) {
-		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", 120, "action", (short)0, (short)0), start, seatRows * seatColumns, 0);
+		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", 120, "action", (short)0, (short)0), start, seatRows * seatColumns, 0, theaterId);
 		
 		for(Viewing view : viewingList) {
 			if(view.compareTo(viewing) == 0)
@@ -167,7 +167,7 @@ public class Theater {
 	 * @param ticketId -The ID of the ticket. 
 	 * @return True if the seat was available, else false.**/
 	public boolean bookSeat(LocalDateTime start, int seatId, int seatCount, String ticketId) {
-		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", 120, "imaginary", (short)0, (short)0), start, seatRows * seatColumns, 0);
+		Viewing viewing = new Viewing(new Film("Bogus Film", "A fake film.", 120, "imaginary", (short)0, (short)0), start, seatRows * seatColumns, 0, theaterId);
 		
 		for(Viewing view : viewingList) {
 			if(view.compareTo(viewing) == 0)

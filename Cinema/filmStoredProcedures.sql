@@ -5,7 +5,7 @@ DELIMITER $$
 USE `cinema`$$
 CREATE PROCEDURE `add_film` (
 	IN filmtitle VARCHAR(50),
-    IN description VARCHAR(50),
+    IN description TEXT(500),
     IN duration INT,
     IN genre VARCHAR(50),
     IN release_year YEAR,

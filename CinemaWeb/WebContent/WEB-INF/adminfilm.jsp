@@ -26,7 +26,7 @@
 		<nav id="admin_nav">
 			<ul>
 				<li><input type="button" value="Hantera filmer" disabled></li>
-				<li><a href="adminviewing.html"><input type="button" value="Hantera visningar"></a></li>
+				<li><a href="GetViewingsAdmin?id=0"><input type="button" value="Hantera visningar"></a></li>
 			</ul>
 		</nav>
 		<article>

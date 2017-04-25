@@ -1,5 +1,3 @@
-DROP SCHEMA cinema;
-CREATE SCHEMA cinema;
 USE cinema;
 
 DROP TABLE IF EXISTS theater;
@@ -16,7 +14,7 @@ DROP TABLE IF EXISTS film;
 CREATE TABLE film (
 	title VARCHAR(50) NOT NULL,
     duration INT(5) UNSIGNED NOT NULL,
-    description VARCHAR(50),
+    description TEXT(500),
     genre VARCHAR(50) NOT NULL,
     release_year YEAR UNSIGNED NOT NULL,
     pgi SMALLINT(2) UNSIGNED NOT NULL,
@@ -35,11 +33,11 @@ CREATE TABLE viewing (
     CONSTRAINT FK_theater
     FOREIGN KEY (theaterId) REFERENCES theater(id)
 		ON UPDATE CASCADE
-		ON DELETE RESTRICT,
+		ON DELETE CASCADE,
 	CONSTRAINT FK_film
     FOREIGN KEY (filmTitle) REFERENCES film(title)
 		ON UPDATE CASCADE
-		ON DELETE RESTRICT
+		ON DELETE CASCADE
 ) ENGINE=INNODB;
 
 DROP TABLE IF EXISTS bookedSeat;

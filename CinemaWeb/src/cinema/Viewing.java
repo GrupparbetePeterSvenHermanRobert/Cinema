@@ -15,6 +15,7 @@ public class Viewing implements Comparable<Viewing> {
 	private LocalDateTime endTime;
 	private int id;
 	private String[] seats;
+	private int theaterId;
 
 	/**
 	 * The end time of the film will be calculated in this constructor.
@@ -26,12 +27,13 @@ public class Viewing implements Comparable<Viewing> {
 	 * @param seatAmount
 	 *            - Amount of seats in the theater.
 	 */
-	public Viewing(Film film, LocalDateTime startTime, int seatAmount, int id) {
+	public Viewing(Film film, LocalDateTime startTime, int seatAmount, int id, int theaterId) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
 		setEndTime(startTime.plusMinutes(film.getLength()));
 		seats = new String[seatAmount];
 		this.id = id;
+		this.theaterId = theaterId;
 	}
 	
 	//En kommentar...
@@ -39,7 +41,7 @@ public class Viewing implements Comparable<Viewing> {
 	/**
 	 * Overloaded constructor adapted for loading Strings from file. ish
 	 */
-	public Viewing(Film film, LocalDateTime startTime, String[] seats, int id) {
+	public Viewing(Film film, LocalDateTime startTime, String[] seats, int id, int theaterId) {
 		this.setFilm(film);
 		this.setStartTime(startTime);
 		setEndTime(startTime.plusMinutes(film.getLength()));
@@ -50,6 +52,7 @@ public class Viewing implements Comparable<Viewing> {
 		}
 		
 		this.id = id;
+		this.theaterId = theaterId;
 	}
 
 	public boolean bookSeat(int seat, String ticketID) {

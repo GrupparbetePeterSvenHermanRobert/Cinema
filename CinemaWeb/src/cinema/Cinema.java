@@ -128,14 +128,38 @@ public class Cinema {
 				time = (Timestamp)row.get("endTime");
 				LocalDateTime endTime = time.toLocalDateTime();
 				
-				// TODO Check if the film exists.
-				// TODO Add the viewing to the list.
+				String bookedSeats[] = getSeats(id);
+				
+				Film film = getFilm(filmTitle);
+				if(film != null) {
+					viewings.add(new Viewing(film, startTime, bookedSeats, id, theaterId));
+				}
 			}
 			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 		return viewings;
+	}
+	
+	/** Get the seats for a given viewing. 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException **/
+	public String[] getSeats(int id) throws ClassNotFoundException, SQLException {
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_seat_by_viewing('" + id + "');");
+	
+		String sb = "";
+		for(Map<String, Object> map : result) {
+			long seatId = (long)map.get("id");
+			int seatNumber = (int)map.get("seatNumber");
+			String ticketId = (String)map.get("tickedID");
+			
+			if(!sb.equals(""))
+				sb += ",";
+			sb += ticketId;
+		}
+		
+		return sb.split(",");
 	}
 
 	public String getAllTheaters() {

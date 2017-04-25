@@ -85,7 +85,9 @@ public class SqlManager {
 				}
 			}
 			
-			result.close();
+			if(result != null)
+				result.close();
+			
 			statement.close();
 			
 		} finally {
