@@ -11,7 +11,6 @@ import java.util.Map;
  * @version 0.1
  **/
 
-
 public class Film implements Comparable<Film> {
 	/** Movie title **/
 	private String title;
@@ -21,6 +20,12 @@ public class Film implements Comparable<Film> {
 	private Duration length;
 	/** the period the movie will play in the Cinema and the Theatre **/
 	private LocalDateTime period;
+	/** Genre of the film. **/
+	private String genre;
+	/** The release year. **/
+	private short year;
+	/** The PGI of the year. **/
+	private short pgi;
 
 	@Override
 	public int compareTo(Film arg0) {
@@ -35,11 +40,14 @@ public class Film implements Comparable<Film> {
 	 * 
 	 * @return nothing
 	 **/
-	public Film(String title, String description, long length) {
+	public Film(String title, String description, long length, String genre, short year, short pgi) {
 		this.title = title;
 		this.description = description;
 		this.length = Duration.ofMinutes(length);
 		period = LocalDateTime.now().plusMonths(2);
+		this.setGenre(genre);
+		this.setYear(year);
+		this.setPgi(pgi);
 	}
 	
 	/** Create a new film object from the given information.
@@ -49,6 +57,9 @@ public class Film implements Comparable<Film> {
 		description = (String)info.get("description");
 		length = Duration.ofMinutes((long)info.get("duration"));
 		period = LocalDateTime.now().plusMonths(2);
+		setGenre((String)info.get("genre"));
+		setYear((short)info.get("release_year"));
+		setPgi((short)info.get("pgi"));
 	}
 	
 	/** Create a new film object.
@@ -113,16 +124,32 @@ public class Film implements Comparable<Film> {
 		return ("Titel: " + title + "\n" + "Description: " + description + "\n" + "Length in minutes: " + length.toMinutes());
 	}
 	
+	public short getYear() {
+		return year;
+	}
+
+	public void setYear(short year) {
+		this.year = year;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public short getPgi() {
+		return pgi;
+	}
+
+	public void setPgi(short pgi) {
+		this.pgi = pgi;
+	}
+	
 	/** Main test function. **/
 	public static void main(String[] args) {
-		Film film = new Film("Guardians of the Galaxy", "A good movie.", 125);
-		System.out.println("Title: " + film.getTitle());
-		System.out.println("Description: " + film.getDescription());
-		System.out.println("Length: " + film.getLength());
-		System.out.println("Period: " + film.getPeriod());
-		
-		System.out.println("----------------------------------------");
-		System.out.println(film.toString());
 	}
 
 }
