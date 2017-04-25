@@ -105,7 +105,7 @@ public class Cinema {
 	public Film getFilm(String title) throws ClassNotFoundException, SQLException {
 		ArrayList<Map<String, Object>> result = null;
 		
-		result = sqlManager.callStoredProcedure("get_film_by_title(" + title + ")");
+		result = sqlManager.callStoredProcedure("get_film_by_title('" + title + "')");
 		
 		Map<String, Object> filmMap = result.get(0);
 		Film film = new Film(filmMap);
@@ -113,32 +113,30 @@ public class Cinema {
 		return film;
 	}
 
-	public List<Viewing> getAllViewings() throws ClassNotFoundException {	
+	public List<Viewing> getAllViewings() throws ClassNotFoundException, SQLException {	
 		List<Viewing> viewings = new ArrayList<Viewing>();
 		
-		try {
-			ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_viewings()");
-			Viewing viewing;
-			for(Map<String, Object> row : result) {
-				int id = (int)row.get("id");
-				String filmTitle = (String)row.get("filmTitle");
-				int theaterId = (int)row.get("theaterId");
-				Timestamp time = (Timestamp)row.get("startTime");
-				LocalDateTime startTime = time.toLocalDateTime();
-				time = (Timestamp)row.get("endTime");
-				LocalDateTime endTime = time.toLocalDateTime();
-				
-				String bookedSeats[] = getSeats(id);
-				
-				Film film = getFilm(filmTitle);
-				if(film != null) {
-					viewings.add(new Viewing(film, startTime, bookedSeats, id, theaterId));
-				}
-			}
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_viewings()");
+		
+		for(Map<String, Object> row : result) {
+			int id = (int)row.get("id");
+			String filmTitle = (String)row.get("filmTitle");
+			int theaterId = (int)row.get("theaterId");
+			Timestamp time = (Timestamp)row.get("startTime");
+			LocalDateTime startTime = time.toLocalDateTime();
+			time = (Timestamp)row.get("endTime");
+			LocalDateTime endTime = time.toLocalDateTime();
 			
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			String bookedSeats[] = getSeats(id);
+			
+			Film film = getFilm(filmTitle);
+			if(film != null) {
+				viewings.add(new Viewing(film, startTime, bookedSeats, id, theaterId));
+			}
 		}
+		
+		viewings.add(new Viewing(null, null, 0, -1, -1));
+			
 		return viewings;
 	}
 	

@@ -1,8 +1,10 @@
 package web;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,16 +33,19 @@ public class GetViewingsAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		Cinema cinema = new Cinema();
 		
 		try {
 			List<Viewing> viewings = cinema.getAllViewings();
 			
 			request.setAttribute("viewings", viewings);
-			request.getRequestDispatcher("/WEB-INF/adminviewing.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminviewing.jsp");
 			
-		} catch (ClassNotFoundException e) {
+			if(dispatcher != null) {
+				dispatcher.forward(request, response);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
 			response.getWriter().append("Error: " + e.getMessage());
 		}
 	}

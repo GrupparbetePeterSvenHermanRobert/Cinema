@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 		<article>
 			<div>
 				<select>
-					<option value="1">Salong 1 Loke</option>
+					<option value="all">Alla</option>
 					<option value="2">Salong 2 Emil</option>
 					<option value="3">Salong 3 Tyr</option>
 					<option value="4">Salong 4 Oden</option>
@@ -42,9 +43,16 @@
 					<option value="8">Salong 8 Saga</option>
 					<option value="9">Salong 9 Glim</option>
 					<option value="10">Salong 10 Alva</option>
-					<option value="all">Alla</option>
+					<option value="1">Salong 1 Loke</option>
 				</select>
 				
+				<ul>
+					<c:out value="${viewings.size()}" />
+					<c:forEach items="${viewings}" var="viewing">
+						<li><a href="GetViewingsAdmin?id=0"><c:out value="${viewing.id}"/>,
+						 <c:out value="${viewing.id}"/></a></li>
+					</c:forEach>
+				</ul>
 				 <select size="25">
 					<option value="1">Rambo 17 2018-04-34 18:30 </option>
 					<option value="2">Nisse i brevlådan 2017-04-20 15:30</option>
