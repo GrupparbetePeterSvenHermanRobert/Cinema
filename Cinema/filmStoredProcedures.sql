@@ -25,7 +25,8 @@ USE `cinema`$$
 CREATE PROCEDURE `delete_film` (IN title VARCHAR(50))
 BEGIN
 	DELETE FROM film
-    WHERE film.title=title;
+    WHERE film.title=title
+    COLLATE utf8_swedish_ci;
 END$$
 
 DELIMITER ;

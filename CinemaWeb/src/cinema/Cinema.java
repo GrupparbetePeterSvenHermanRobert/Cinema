@@ -54,8 +54,13 @@ public class Cinema {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public void addFilm(String title, int durationInMinutes, String description) throws SQLException, ClassNotFoundException {
-		String query = "add_film(" + title + "', '" + description + "', '" + durationInMinutes + "');";
+	public void addFilm(String title, int durationInMinutes, String description, String genre, int year, int pgi) throws SQLException, ClassNotFoundException {
+		String query = "add_film('" + title + "', '" + description + "', '" + durationInMinutes + "', '" + genre +"', '" + year + "', '" + pgi + "');";
+		sqlManager.callStoredProcedure(query);
+	}
+	
+	public void deleteFilm(String title) throws ClassNotFoundException, SQLException {
+		String query = "delete_film('" + title + "');";
 		sqlManager.callStoredProcedure(query);
 	}
 
