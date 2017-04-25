@@ -23,13 +23,13 @@
 			<ul>
 				<li><a href="info.html"><input type="button" value="Info"></a></li>
 				<li><input type="button" value="Films & Tickets" disabled></li>
-				<li><a href="adminfilm.html"><input type="button" value="Admin"></a></li>
+				<li><a href="adminfilm.jsp"><input type="button" value="Admin"></a></li>
 			</ul>
 		</nav>
 		<article>
 			<div>
 			<%int i = 0;
-			%>
+			%>-
 			<ul>
 			
 			<c:set var="id" value="0" scope="page"/>
@@ -58,7 +58,7 @@
 				</div>
 				<div id="book_ticket">
 					<a href="index.html"><input type="button" value="Back"></a>
-					<a href="viewingbooking.html"><input type="button" value="Boka Biljett"></a>
+					<a href="GetViewingBooking?title=${film.title}"><input type="button" value="Boka Biljett"></a>
 				</div>
 				<div></div>
 			</div>
