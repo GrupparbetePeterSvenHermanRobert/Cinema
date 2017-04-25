@@ -1,22 +1,22 @@
 USE cinema;
 
 INSERT INTO film
-VALUES ('Lord of the Rings: Fellowship of the Ring', 145, 'A good fantasy film.');
+VALUES ('Lord of the Rings: Fellowship of the Ring', 145, 'A good fantasy film.', 'Fantasy', 2001, 15);
 
 INSERT INTO film
-VALUES ('Lord of the Rings: The Two Towers', 145, 'A good fantasy film.');
+VALUES ('Lord of the Rings: The Two Towers', 145, 'A good fantasy film.', 'Fantasy', 2002, 15);
 
 INSERT INTO film
-VALUES ('Lord of the Rings: Return of the King', 145, 'A good fantasy film.');
+VALUES ('Lord of the Rings: Return of the King', 145, 'A good fantasy film.', 'Fantasy', 2003, 15);
 
 INSERT INTO film
-VALUES ('Matrix', 125, 'A good sci-fi film.');
+VALUES ('Matrix', 125, 'A good sci-fi film.', 'Sci-Fi', 2006, 15);
 
 INSERT INTO film
-VALUES ('Terminator', 125, 'A sci.fi film.');
+VALUES ('Terminator', 125, 'A sci.fi film.', 'Sci-Fi/Action', 1998, 15);
 
 INSERT INTO film
-VALUES ('Star Wars: The Clone Wars', 125, 'A good sci-fi film.');
+VALUES ('Star Wars: The Clone Wars', 125, 'A good sci-fi film.', 'Sci-Fi/Animation', 2000, 12);
 
 INSERT INTO theater
 VALUES(0, 4, 5);

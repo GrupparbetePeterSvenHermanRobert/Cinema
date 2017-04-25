@@ -36,9 +36,8 @@ BEGIN
 END$$
 DELIMITER ;
 
-
 USE `cinema`;
-DROP procedure IF EXISTS `get_viewing_by_time`;
+DROP procedure IF EXISTS `get_viewing_by_title`;
 
 DELIMITER $$
 USE `cinema`$$
@@ -48,7 +47,8 @@ CREATE PROCEDURE `get_viewing_by_title` (
 BEGIN
 	SELECT * FROM viewing  
     WHERE title = viewing.filmTitle;
-END$$
+    ORDER BY start startTime ASC;
+END $$
 DELIMITER ;
 
 
@@ -73,4 +73,15 @@ BEGIN
 	DELETE FROM viewing  
     WHERE title = viewing.filmTitle;
 END$$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `get_viewings`;
+
+DELIMITER $$
+USE `cinema` $$
+CREATE PROCEDURE `get_viewings` ()
+BEGIN
+	SELECT * FROM viewing
+	ORDER BY startTime ASC;
+END $$
 DELIMITER ;
