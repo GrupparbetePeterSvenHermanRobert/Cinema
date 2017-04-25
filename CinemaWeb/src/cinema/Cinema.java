@@ -1,9 +1,6 @@
 package cinema;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 /**this is the Ticket
@@ -13,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * This filmlist will be a set of films
@@ -66,18 +61,29 @@ public class Cinema {
 
 	public List<Film> getFilms(String orderByColumn, boolean ascending) throws SQLException, ClassNotFoundException {
 		String query = "";
-		if(orderByColumn.equalsIgnoreCase("title")) {
-			if(ascending)
-				query = "get_films_order_by_title();";
-			else
-				query = "get_films_order_by_title_desc();";
+		
+		if(ascending)
+			query = "get_films_order_by_title();";
+		else
+			query = "get_films_order_by_title_desc();";
+		
+		
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure(query);
+		
+		Film newFilm;		
+		ArrayList<Film> filmList = new ArrayList<Film>();
+		for (Map<String, Object> film : result) {
+			newFilm = new Film(film);
+			filmList.add(newFilm);
 		}
-		else if(orderByColumn.equalsIgnoreCase("id")) {
-				if(ascending)
-					query = "get_films_order_by_id();";
-				else
-					query = "get_films_order_by_id_desc();";
-		}
+
+		return filmList;
+	}
+	
+	public List<Film> getFilms(String filter) throws SQLException, ClassNotFoundException {
+		String query = "";
+
+		query = "get_films_by_filter(" + filter + ");";
 		
 		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure(query);
 		

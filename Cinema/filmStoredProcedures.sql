@@ -51,7 +51,8 @@ CREATE PROCEDURE `get_films_by_filter` (IN filter VARCHAR(50))
 BEGIN
 	SELECT * FROM film
     WHERE film.title LIKE filter
-    COLLATE utf8_swedish_ci;
+    COLLATE utf8_swedish_ci
+    ORDER BY title ASC;
 END $$
 
 DROP PROCEDURE IF EXISTS `get_films_order_by_title`;

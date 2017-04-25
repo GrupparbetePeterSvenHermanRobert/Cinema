@@ -19,7 +19,7 @@
 		<nav>
 			<ul>
 				<li><a href="info.html"><input type="button" value="Info"></a></li>
-				<li><a href="GetFilmsBooking"><input type="button" value="Films & Tickets"></a></li>
+				<li><a href="GetFilmsBooking?id=0"><input type="button" value="Films & Tickets"></a></li>
 				<li><input type="button" value="Admin" disabled></li>
 			</ul>
 		</nav>
@@ -30,9 +30,12 @@
 			</ul>
 		</nav>
 		<article>
-			<div>				
-				<label for="filter">Titelfilter</label>
-				<input type="text" name="filter">
+			<div>
+				<form method="GET" action="GetFilmsAdmin">
+					<input type="hidden" name="id" value="0">
+					<label for="filter">Titelfilter</label>
+					<input type="text" name="filter">
+				</form>		
 				
 				<ul>
 					<c:set var="id" value="0" scope="page"/>
@@ -43,9 +46,10 @@
 						<c:set var="id" value="${id + 1}" scope="page"/>
 					</c:forEach>
 				</ul>
-				
-				<input type="button" value="Ta Bort Film">
-				<form>
+				<form method="POST" action="DeleteFilm?title=${film.title}">
+					<input type="submit" value="Ta Bort Film">
+				</form>
+				<form method="POST" action="AddFilm">
 					<input type="submit" value="Lägg till Film"><br>
 					<label for="title">Titel</label>
 					<input type="text" name="title"><br>

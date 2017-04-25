@@ -35,8 +35,17 @@ public class GetFilmsAdminServlet extends HttpServlet {
 		Cinema cinema = new Cinema();
 		
 		try {
-			List<Film> films = cinema.getFilms("title", true);
 			request.setCharacterEncoding("UTF-8");
+			List<Film> films = null;
+			
+			String filter = request.getParameter("filter");	
+			if(filter == null || filter.equals("")) {		
+				films = cinema.getFilms("title", true);
+			}
+			else {
+				films = cinema.getFilms("%" + filter + "%");
+			}
+			
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			request.setAttribute("films", films);

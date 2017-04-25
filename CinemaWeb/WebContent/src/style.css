@@ -80,7 +80,7 @@ option, select {
 	border-color: transparent;
 }
 
-input[type="button"] {
+input[type="button"], input[type="submit"] {
 	flex: 1;
 	width: 160px;
 	height: 60px;
