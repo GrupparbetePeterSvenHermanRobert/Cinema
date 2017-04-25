@@ -27,6 +27,17 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP TABLE IF EXISTS `get_theaters`;
+
+DELIMITER $$
+USE `cinema` $$
+CREATE PROCEDURE `get_theaters` ()
+BEGIN
+	SELECT * FROM theater;
+END $$
+
+DELIMITER ;
+
 DROP procedure IF EXISTS `delete_theater`;
 
 DELIMITER $$

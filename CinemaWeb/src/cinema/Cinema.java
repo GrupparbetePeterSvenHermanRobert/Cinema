@@ -158,13 +158,15 @@ public class Cinema {
 		return sb.split(",");
 	}
 
-	public String getAllTheaters() {
-		try {
-			ArrayList<Map<String, Object>> result = sqlManager.sendQuery("SELECT * FROM theater;");
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+	public List<Theater> getAllTheaters() throws ClassNotFoundException, SQLException {
+		List<Theater> theaters = new ArrayList<Theater>();
+		
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure("get_theaters();");
+		for(Map<String,Object> map : result) {
+			theaters.add(new Theater(map));
 		}
-		return "";
+		
+		return theaters;
 	}
 
 	// public String listViewings(int theatreId) {

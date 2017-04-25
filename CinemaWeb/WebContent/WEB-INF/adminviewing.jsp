@@ -33,17 +33,14 @@
 		<article>
 			<div>
 				<select>
-					<option value="all">Alla</option>
-					<option value="2">Salong 2 Emil</option>
-					<option value="3">Salong 3 Tyr</option>
-					<option value="4">Salong 4 Oden</option>
-					<option value="5">Salong 5 Thor</option>
-					<option value="6">Salong 6 Njord</option>
-					<option value="7">Salong 7 Freja</option>
-					<option value="8">Salong 8 Saga</option>
-					<option value="9">Salong 9 Glim</option>
-					<option value="10">Salong 10 Alva</option>
-					<option value="1">Salong 1 Loke</option>
+					<option value="-1">Alla</option>
+					<c:forEach items="${theaters}" var="theater">
+					
+						<option value="${Integer.toString(theater.id)}">
+							Salong <c:out value="${theater.id}"/>
+						</option>
+					
+					</c:forEach>
 				</select>
 				
 				<ul>

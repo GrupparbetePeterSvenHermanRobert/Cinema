@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import cinema.Cinema;
 import cinema.Film;
+import cinema.Theater;
 import cinema.Viewing;
 
 /**
@@ -39,9 +40,11 @@ public class GetViewingsAdminServlet extends HttpServlet {
 		
 		try {
 			List<Viewing> viewings = cinema.getAllViewings();
+			List<Theater> theaters = cinema.getAllTheaters();
 			
 			request.setAttribute("viewing", viewings.get(id));
 			request.setAttribute("viewings", viewings);
+			request.setAttribute("theaters", theaters);
 			
 			Film film = cinema.getFilm(viewings.get(id).getFilmTitle());
 			if(film != null)
