@@ -134,8 +134,6 @@ public class Cinema {
 				viewings.add(new Viewing(film, startTime, bookedSeats, id, theaterId));
 			}
 		}
-		
-		viewings.add(new Viewing(null, null, 0, -1, -1));
 			
 		return viewings;
 	}

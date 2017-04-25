@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class Viewing implements Comparable<Viewing> {
 	private Film film;
+	private String filmTitle;
+	private String time;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private int id;
@@ -33,7 +35,10 @@ public class Viewing implements Comparable<Viewing> {
 		setEndTime(startTime.plusMinutes(film.getLength()));
 		seats = new String[seatAmount];
 		this.id = id;
-		this.theaterId = theaterId;
+		this.setTheaterId(theaterId);
+		
+		setFilmTitle(film.getTitle());
+		setTime(startTime.toString());
 	}
 	
 	//En kommentar...
@@ -52,7 +57,10 @@ public class Viewing implements Comparable<Viewing> {
 		}
 		
 		this.id = id;
-		this.theaterId = theaterId;
+		this.setTheaterId(theaterId);
+		
+		setFilmTitle(film.getTitle());
+		setTime(startTime.toString());
 	}
 
 	public boolean bookSeat(int seat, String ticketID) {
@@ -170,5 +178,29 @@ public class Viewing implements Comparable<Viewing> {
 	
 	/** Main function for testing this class. **/
 	public static void main(String[] args) {
+	}
+
+	public String getFilmTitle() {
+		return filmTitle;
+	}
+
+	public void setFilmTitle(String filmTitle) {
+		this.filmTitle = filmTitle;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public int getTheaterId() {
+		return theaterId;
+	}
+
+	public void setTheaterId(int theaterId) {
+		this.theaterId = theaterId;
 	}
 }

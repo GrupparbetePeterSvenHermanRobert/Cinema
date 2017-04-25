@@ -49,20 +49,10 @@
 				<ul>
 					<c:out value="${viewings.size()}" />
 					<c:forEach items="${viewings}" var="viewing">
-						<li><a href="GetViewingsAdmin?id=0"><c:out value="${viewing.id}"/>,
-						 <c:out value="${viewing.id}"/></a></li>
+						<li><a href="GetViewingsAdmin?id=0"><c:out value="${viewing.filmTitle}"/>,
+						 <c:out value="${viewing.time}"/></a></li>
 					</c:forEach>
 				</ul>
-				 <select size="25">
-					<option value="1">Rambo 17 2018-04-34 18:30 </option>
-					<option value="2">Nisse i brevlådan 2017-04-20 15:30</option>
-					<option value="3">Star Treck 27 2018-02-20 18:30</option>
-					<option value="4">Rambo 17 2018-04-31 18:30 </option>
-					<option value="5">Star Treck 27 2018-04-20 18:30</option>
-					<option value="6">Nisse i brevlådan 2017-04-27 15:30</option>
-					<option value="7">Rambo 17 2018-05-28 18:30</option>
-					<option value="8">Nisse i brevlådan 2017-04-02 15:30</option>
-				</select>
 				<input type="button" value="Ta Bort Visning">
 				<form>
 					<input type="submit" value="Lägg till Visning"><br>
