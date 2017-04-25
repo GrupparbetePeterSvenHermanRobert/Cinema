@@ -167,9 +167,5 @@ public class Viewing implements Comparable<Viewing> {
 	
 	/** Main function for testing this class. **/
 	public static void main(String[] args) {
-		Film film = new Film("Some Film Title", "Some Film Description", 120);
-		Viewing viewing = new Viewing(film, LocalDateTime.now().plusDays(5), 3 * 4, 0);
-		
-		System.out.println(viewing.bookSeat(0, "Some ID"));
 	}
 }
