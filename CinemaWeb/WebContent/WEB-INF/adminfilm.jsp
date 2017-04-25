@@ -35,6 +35,7 @@
 					<input type="hidden" name="id" value="0">
 					<label for="filter">Titelfilter</label>
 					<input type="text" name="filter">
+					<input type="submit" value="Sök">
 				</form>		
 				
 				<ul>

@@ -83,7 +83,7 @@ public class Cinema {
 	public List<Film> getFilms(String filter) throws SQLException, ClassNotFoundException {
 		String query = "";
 
-		query = "get_films_by_filter(" + filter + ");";
+		query = "get_films_by_filter('" + filter + "');";
 		
 		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure(query);
 		
