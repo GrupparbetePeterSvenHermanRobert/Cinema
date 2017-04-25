@@ -34,16 +34,15 @@
 				<label for="filter">Titelfilter</label>
 				<input type="text" name="filter">
 				
-				<select size="25">
+				<ul>
+					<c:set var="id" value="0" scope="page"/>
 					<c:forEach items="${films}" var="film">
-						<% int i = 0; %>
-						<option value="${i}">
+						<li><a href="GetFilmsAdmin?id=${Integer.toString(id)}" class="film_link">
 							&bull; <c:out value="${film.title}"/>
-							<c:out value="${film.description}" />
-						</option>
-						<% i++; %>
+						</a></li>
+						<c:set var="id" value="${id + 1}" scope="page"/>
 					</c:forEach>
-				</select>
+				</ul>
 				
 				<input type="button" value="Ta Bort Film">
 				<form>
@@ -65,10 +64,10 @@
 			</div>
 			<div id="film_info_div">
 				<div id="film_info">
-				<h3><c:out value="${film.title}"/></h3>
-					<p>Action 2018</p>
-					<p>100 min 15år</p>
-					<p><c:out value="${film.description}"/></p>			
+					<h3><c:out value="${film.title}"/></h3>
+					<p><c:out value="${film.genre}"/>, <c:out value="${film.year}"/></p>
+					<p><c:out value="${film.length}"/> min, <c:out value="${film.pgi}"/> år</p>
+					<p><c:out value="${film.description}"/></p>
 				</div>
 			</div>
 		</article>

@@ -1,5 +1,6 @@
 package cinema;
 
+import java.sql.Date;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -23,9 +24,9 @@ public class Film implements Comparable<Film> {
 	/** Genre of the film. **/
 	private String genre;
 	/** The release year. **/
-	private short year;
+	private int year;
 	/** The PGI of the year. **/
-	private short pgi;
+	private int pgi;
 
 	@Override
 	public int compareTo(Film arg0) {
@@ -40,7 +41,7 @@ public class Film implements Comparable<Film> {
 	 * 
 	 * @return nothing
 	 **/
-	public Film(String title, String description, long length, String genre, short year, short pgi) {
+	public Film(String title, String description, long length, String genre, int year, int pgi) {
 		this.title = title;
 		this.description = description;
 		this.length = Duration.ofMinutes(length);
@@ -58,8 +59,11 @@ public class Film implements Comparable<Film> {
 		length = Duration.ofMinutes((long)info.get("duration"));
 		period = LocalDateTime.now().plusMonths(2);
 		setGenre((String)info.get("genre"));
-		setYear((short)info.get("release_year"));
-		setPgi((short)info.get("pgi"));
+		Date date = (Date)info.get("release_year");
+		
+		setYear(date.toLocalDate().getYear());
+		
+		setPgi((int)info.get("pgi"));
 	}
 	
 	/** Create a new film object.
@@ -124,11 +128,11 @@ public class Film implements Comparable<Film> {
 		return ("Titel: " + title + "\n" + "Description: " + description + "\n" + "Length in minutes: " + length.toMinutes());
 	}
 	
-	public short getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(short year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
@@ -140,11 +144,11 @@ public class Film implements Comparable<Film> {
 		this.genre = genre;
 	}
 
-	public short getPgi() {
+	public int getPgi() {
 		return pgi;
 	}
 
-	public void setPgi(short pgi) {
+	public void setPgi(int pgi) {
 		this.pgi = pgi;
 	}
 	

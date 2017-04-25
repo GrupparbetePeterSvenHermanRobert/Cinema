@@ -127,6 +127,13 @@ ul {
 	list-style-type: none;
 }
 
+.film_link, .film_link:active, .film_link:hover, .film_link:visited {
+	color: black;
+	font-style: normal;
+	font: 15px arial, serif;
+	text-decoration: none;
+}
+
 /* Cosmetics for the index page. */
 #index_article {
 	height: 350px;
