@@ -173,9 +173,25 @@ public class Cinema {
 	//
 	// }
 
-	public boolean addViewing(int id, String filmTitle, LocalDateTime startTime, int theaterId) {
-		// SQLManager CALL add_viewing(()
-		return false;
+	public boolean addViewing(int id, String filmTitle, LocalDateTime startTime, int theaterId) throws ClassNotFoundException, SQLException {
+		String query = "get_film_by_title(" + "filmTitle" + ");";
+		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure(query);
+		Film film = new Film(result.get(0));
+		
+		if (result.isEmpty()) {
+			return false;
+		} else {
+			
+			query = "a";
+			sqlManager.callStoredProcedure(query);
+			return false;
+		}
+
+	}
+	
+	public void removeViewing(int id) throws ClassNotFoundException, SQLException {
+		String query = "delete_viewing_by_id(" + id + ");";
+		sqlManager.callStoredProcedure(query);
 	}
 
 	public boolean bookSeat(int teatreId, LocalDateTime start, int seatId, int seatCount, String ticketId) {
