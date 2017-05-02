@@ -1,6 +1,7 @@
 package web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -11,10 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import cinema.Cinema;
 import cinema.Film;
 import cinema.Theater;
 import cinema.Viewing;
+import storage.TheatersViewingsFilmsContainer;
 
 /**
  * Servlet implementation class GetViewingsAdminServlet
@@ -35,26 +39,27 @@ public class GetViewingsAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
 		Cinema cinema = new Cinema();
 		
 		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json;characterset=UTF-8");
+			PrintWriter out = response.getWriter();
+			
 			List<Viewing> viewings = cinema.getAllViewings();
 			List<Theater> theaters = cinema.getAllTheaters();
+			List<Film> films = cinema.getFilms("title", true);
 			
-			request.setAttribute("viewing", viewings.get(id));
-			request.setAttribute("viewings", viewings);
-			request.setAttribute("theaters", theaters);
+			// Put all data into a single container object.
+			TheatersViewingsFilmsContainer container = new TheatersViewingsFilmsContainer();
+			container.setFilms(films);
+			container.setViewings(viewings);
+			container.setTheaters(theaters);
 			
-			Film film = cinema.getFilm(viewings.get(id).getFilmTitle());
-			if(film != null)
-				request.setAttribute("film", film);
+			// Convert the container into a JSON string and send to the front end. 
+			out.print(new Gson().toJson(container));
+			out.flush();
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminviewing.jsp");
-			
-			if(dispatcher != null) {
-				dispatcher.forward(request, response);
-			}
 		} catch (ClassNotFoundException | SQLException e) {
 			response.getWriter().append("Error: " + e.getMessage());
 		}
@@ -64,7 +69,16 @@ public class GetViewingsAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		Cinema cinema = new Cinema();
+		
+		try {
+			request.setCharacterEncoding("UTF-8");
+			
+			// TODO receive JSON strings.
+			
+		} catch (Exception e /*ClassNotFoundException | SQLException e*/) {
+			response.getWriter().append("Error: " + e.getMessage());
+		}
 	}
 
 }
