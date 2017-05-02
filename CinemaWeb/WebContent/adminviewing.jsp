@@ -30,32 +30,48 @@
 				<li><input type="button" value="Hantera visningar" disabled></li>
 			</ul>
 		</nav>
-		<article>
+		<article data-ng-app="avApp" data-ng-controller="theaterController">
 			<div>
-				<select>
+				<select data-ng-change="theaterFilter()" data-ng-model="selectedTheater" data-ng-init="-1">
 					<option value="-1">Alla</option>
-					<c:forEach items="${theaters}" var="theater">
-					
-						<option value="${Integer.toString(theater.id)}">
-							Salong <c:out value="${theater.id}"/>
-						</option>
-					
-					</c:forEach>
+					<option value="{{theater.theaterId}}" data-ng-repeat="theater in theaters">
+					Salong {{theater.theaterId}}
+					</option>
 				</select>
 				
-				<ul>
-					<c:set var="id" value="0" scope="page"/>
-					<c:forEach items="${viewings}" var="viewing">
-						<li><a href="GetViewingsAdmin?id=${Integer.toString(id)}" class="film_link">
-						<c:out value="${viewing.filmTitle}"/>, 
-						<c:out value="${viewing.date}"/>, Kl. 
-						<c:out value="${viewing.time}"/></a></li>
-						<c:set var="id" value="${id + 1}" scope="page"/>
-					</c:forEach>
-				</ul>
-				<input type="button" value="Ta Bort Visning">
+				<table>
+					<thead>
+						<tr>
+							<td>
+								Filmtitel
+							</td>
+							<td>
+								Datum
+							</td>
+							<td>
+								Start- och sluttid
+							</td>
+						</tr>
+					</thead>
+					<tr data-ng-repeat="viewing in viewings">
+						<td>
+							{{viewing.film.title}}
+						</td>
+						<td>
+							{{viewing.date}}
+						</td>
+						<td>
+							Kl. {{viewing.startTime.time.hour}}:{{viewing.startTime.time.minute}} -
+							{{viewing.endTime.time.hour}}:{{viewing.endTime.time.minute}}
+						</td>
+						<td>
+							<button data-ng-click="remove({{viewing.id}})">Ta Bort</button>
+						</td>
+					</tr>
+				</table>
+				
 				<form>
-					<input type="submit" value="Lägg till Visning"><br>
+					<input type="button" value="Lägg till Visning" data-ng-click="add "><br>
 					<label for="title">Filmtitel</label>
 					<input type="text" name="title"><br>
 					<label for="theater">Salong</label>
@@ -72,24 +88,29 @@
 			</div>
 			<div id="film_info_div">
 				<div id="film_info">
-					<h3><c:out value="${film.title}"/></h3>
+					<!--<h3><c:out value="${film.title}"/></h3>
 					<p><c:out value="${film.genre}"/>, <c:out value="${film.year}"/></p>
 					<p><c:out value="${film.length}"/> min, <c:out value="${film.pgi}"/> år</p>
-					<p><c:out value="${film.description}"/></p>
+					<p><c:out value="${film.description}"/></p>-->
 				</div>
 				<div id="film_info">
-					<h3>Salong <c:out value="${viewing.theaterId}"/></h3>
+					<!--<h3>Salong <c:out value="${viewing.theaterId}"/></h3>
 					<p><c:out value="${viewing.date}"/></p>
-					<p><c:out value="${viewing.time}"/> - <c:out value="${viewing.end}"/></p>
+					<p><c:out value="${viewing.time}"/> - <c:out value="${viewing.end}"/></p>-->
 					<p><!-- Theater Information to be added! -->Kuddar och hörslinga finns till alla.</p>
 				</div>
-
-
 			</div>
 		</article>
 		<footer>
 			<p>&copy; 2017, Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg, All Rights Reserved.</p>
 		</footer>
 	</div>
+	
+	<!-- Load AngularJS version 1.6.2 -->
+	<script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+	<!-- Load the Java Script to use. -->
+	<script src="script/adminviewing.js"></script>
+	<!-- Warn about issues with javaScript. -->
+	<noscript>JavaScript unavailable or disabled!</noscript>
 </body>
 </html>
