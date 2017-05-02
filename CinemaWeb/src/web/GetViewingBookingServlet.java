@@ -35,11 +35,10 @@ public class GetViewingBookingServlet extends HttpServlet {
 	 *      response)
 	 */
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Cinema cinema= new Cinema();	
+		Cinema cinema= new Cinema();
 		String filmtitle = request.getParameter("title");
 
 		try {
