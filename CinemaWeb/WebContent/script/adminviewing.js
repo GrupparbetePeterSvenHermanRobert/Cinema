@@ -12,17 +12,26 @@
 			$scope.films = response.data.films;
 			$scope.viewings = response.data.viewings;
 			$scope.theaters = response.data.theaters;
+			
+			$scope.viewingsList = response.data.viewings;
 		}
 		
 		var onError = function() {
-			// TODO Display error!
+			$scope.error = "Error: " + response.data.status;
 		}
 		
 		// Call the servlet for data.
 		$http.get("GetViewingsAdmin").then(onComplete, onError);
 		
-		$scope.theaterFilter = function() {
-			// TODO filter away viewings for other theaters.
+		$scope.filter = function() {
+			var id = $scope.selectedTheater;
+			
+			if(id == -1)
+				$scope.viewings = $scope.viewingsList;
+			else
+				$scope.viewings = $scope.viewingsList.filter(function(viewing){
+					return viewing.theaterId == id;
+				})
 		}
 	}
 	

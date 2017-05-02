@@ -32,7 +32,7 @@
 		</nav>
 		<article data-ng-app="avApp" data-ng-controller="theaterController">
 			<div>
-				<select data-ng-change="theaterFilter()" data-ng-model="selectedTheater" data-ng-init="-1">
+				<select data-ng-change="filter()" data-ng-model="selectedTheater" data-ng-init="-1">
 					<option value="-1">Alla</option>
 					<option value="{{theater.theaterId}}" data-ng-repeat="theater in theaters">
 					Salong {{theater.theaterId}}
@@ -71,19 +71,19 @@
 				</table>
 				
 				<form>
-					<input type="button" value="Lägg till Visning" data-ng-click="add "><br>
+					<input type="button" value="Lägg till Visning" data-ng-click="add()"><br>
 					<label for="title">Filmtitel</label>
-					<input type="text" name="title"><br>
+					<input type="text" name="title" data-ng-model="filmTitle"><br>
 					<label for="theater">Salong</label>
-					<input type="number" name="theater"><br>
+					<input type="number" name="theater" data-ng-model="theaterId"><br>
 					<label for="date">Datum</label>
-					<input type="date" name="date"><br>
+					<input type="date" name="date" data-ng-model="date"><br>
 					<label for="start">Starttid</label>
-					<input type="time" name="start"><br>
+					<input type="time" name="start" data-ng-model="start"><br>
 					<label for="end">Sluttid</label>
-					<input type="time" name="end"><br>
+					<input type="time" name="end" data-ng-model="end"><br>
 					<label for="description">Beskrivning</label>
-					<input type="text" name="description"><br>
+					<input type="text" name="description" data-ng-model="description"><br>
 				</form>
 			</div>
 			<div id="film_info_div">
