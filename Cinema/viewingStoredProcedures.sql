@@ -45,9 +45,9 @@ CREATE PROCEDURE `get_viewing_by_title` (
 	IN title VARCHAR(50)
 )
 BEGIN
-	SELECT * FROM viewing  
-    WHERE title = viewing.filmTitle;
-    ORDER BY start startTime ASC;
+	SELECT * FROM viewing
+    WHERE title = viewing.filmTitle
+    ORDER BY startTime ASC;
 END $$
 DELIMITER ;
 
