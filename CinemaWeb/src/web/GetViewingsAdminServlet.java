@@ -80,11 +80,14 @@ public class GetViewingsAdminServlet extends HttpServlet {
 			
 			// Convert the JSON string.
 			Gson gson = new Gson();
-			AddViewingPackage info = gson.fromJson(parameters, AddiewingPackage.class);
+			AddViewingPackage info = gson.fromJson(parameters, AddViewingPackage.class);
 			
 			Cinema cin = new Cinema();
 			
-			cin.addViewing(id, info.getFilmtitle(), info.getStart(), info.getTheaterId())
+			if(info.getMode().equalsIgnoreCase("add"))
+				cin.addViewing(0, info.getFilmtitle(), info.getStart(), info.getTheaterId());
+			else if(info.getMode().equalsIgnoreCase("remove"))
+				cin.removeViewing(info.getId());
 			
 		} catch (Exception e /*ClassNotFoundException | SQLException e*/) {
 			response.getWriter().append("Error: " + e.getMessage());
