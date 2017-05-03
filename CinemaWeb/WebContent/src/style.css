@@ -58,7 +58,7 @@ div {
 #film_info_div {
 	display: flex;
 	flex-flow: column wrap;
-	justify-content: center;
+	justify-content: left;
 }
 
 #film_info {
