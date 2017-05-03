@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import cinema.Film;
 import cinema.Theater;
 import cinema.Viewing;
 import storage.TheatersViewingsFilmsContainer;
+import storage.AddViewingPackage;
 
 /**
  * Servlet implementation class GetViewingsAdminServlet
@@ -74,7 +76,19 @@ public class GetViewingsAdminServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			
-			// TODO receive JSON strings.
+			// receive JSON string.
+			String parameters = request.getReader().lines().collect(Collectors.joining());
+			
+			// Convert the JSON string.
+			Gson gson = new Gson();
+			AddViewingPackage info = gson.fromJson(parameters, AddViewingPackage.class);
+			
+			Cinema cin = new Cinema();
+			
+			if(info.getMode().equalsIgnoreCase("add"))
+				cin.addViewing(0, info.getFilmtitle(), info.getStart(), info.getTheaterId());
+			else if(info.getMode().equalsIgnoreCase("remove"))
+				cin.removeViewing(info.getId());
 			
 		} catch (Exception e /*ClassNotFoundException | SQLException e*/) {
 			response.getWriter().append("Error: " + e.getMessage());
