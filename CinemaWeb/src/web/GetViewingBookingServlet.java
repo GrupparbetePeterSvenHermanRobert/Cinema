@@ -1,6 +1,7 @@
 package web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import cinema.Cinema;
 import cinema.Film;
@@ -44,7 +47,11 @@ public class GetViewingBookingServlet extends HttpServlet {
 		
 		try {
 			Film film = cinema.getFilm(filmtitle);
-			if (film != null)
+			response.setContentType("application/json;charset=UTF-8;");
+			PrintWriter out = response.getWriter();
+			out.print(new Gson().toJson(film));
+			out.flush();
+			/*if (film != null)
 				System.out.println("Inte null");
 			else
 				System.out.println("Film är null");
@@ -54,7 +61,7 @@ public class GetViewingBookingServlet extends HttpServlet {
 				System.out.println(v.getDate() + " : " +v.getTime());
 				
 			}
-			/*request.setAttribute("film",film);
+		*/	/*request.setAttribute("film",film);
 			request.setAttribute("viewings",viewings);
 			*/
 			
@@ -68,10 +75,10 @@ public class GetViewingBookingServlet extends HttpServlet {
 		
 
 
-		RequestDispatcher dist = request.getRequestDispatcher("/WEB-INF/viewingbooking.jsp");
+		/*RequestDispatcher dist = request.getRequestDispatcher("/WEB-INF/viewingbooking.jsp");
 
 		if (dist != null)
-			dist.forward(request, response);
+			dist.forward(request, response);*/
 	}
 
 	/**
