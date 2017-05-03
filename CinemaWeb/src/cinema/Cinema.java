@@ -176,17 +176,18 @@ public class Cinema {
 	public boolean addViewing(int id, String filmTitle, LocalDateTime startTime, int theaterId) throws ClassNotFoundException, SQLException {
 		String query = "get_film_by_title(" + "filmTitle" + ");";
 		ArrayList<Map<String, Object>> result = sqlManager.callStoredProcedure(query);
-		Film film = new Film(result.get(0));
-		
+				
 		if (result.isEmpty()) {
 			return false;
 		} else {
+			Film film = new Film(result.get(0));
+			LocalDateTime endTime = startTime.plusMinutes(film.getLength());
 			
-			query = "a";
+			query = "add_viewing(" + id + ", " + filmTitle + ", " + Timestamp.valueOf(startTime) + ", " + Timestamp.valueOf(endTime) + ", " + theaterId + ");";
 			sqlManager.callStoredProcedure(query);
-			return false;
+			
+			return true;
 		}
-
 	}
 	
 	public void removeViewing(int id) throws ClassNotFoundException, SQLException {
