@@ -30,16 +30,15 @@
 			<div id="film_info_div">
 				<div id="film_info">
 					<h3>{{ filmTitle }}</h3>
-					<p>{{ filmGenre }}, {{ filmYear }}, {{ filmDuration }}</p>
+					<p>{{ filmGenre }}, {{ filmYear }}, Speltid: {{ filmDuration }}</p>
 					<p>{{ filmDescription }}</p>
 					<p></p>
 					</p>
 				</div>
 				<div id="film_info">
-					<h3>Salong 22</h3>
-					<p>2019-04-33</p>
-					<p>15:30 - 19:00</p>
-					<p>Här får man ta med egna stolar och fotöljer eftersom det inte finns nåt att sitta på </p>
+					<h3>{{ theater }}</h3>
+					<p>{{ date }}</p>
+					<p>{{ time }}</p>
 				</div>
 				<div id="book_ticket">
 					<a href="viewingbooking.html"><input type="button" value="Back"></a>
