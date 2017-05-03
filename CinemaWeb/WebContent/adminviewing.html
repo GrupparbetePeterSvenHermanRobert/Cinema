@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width">
 <meta charset="UTF-8">
-<meta name="author" content="Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg">
+<meta name="author" content="Gustaf Peter Hultgren, Robert F�ngstr�m, Sven Andersson, Herman Dackenberg">
 <link rel="icon" href="media/cinema.ico">
 <link rel="stylesheet" href="src/style.css">
 <link rel="stylesheet" href="src/navbar.css">
@@ -17,81 +17,103 @@
 		<nav>
 			<ul>
 				<li><a href="info.html"><input type="button" value="Info"></a></li>
-				<li><a href="filmbooking.html"><input type="button" value="Films & Tickets"></a></li>
-				<li><a href="adminfilm.html"><input type="button" value="Admin" disabled></a></li>
+				<li><a href="GetFilmsBooking?id=0"><input type="button" value="Films & Tickets"></a></li>
+				<li><input type="button" value="Admin" disabled></li>
 			</ul>
 		</nav>
 		<nav id="admin_nav">
 			<ul>
-				<li><a href="adminfilm.html"><input type="button" value="Hantera filmer"></a></li>
-				<li><a href="adminviewing.html"><input type="button" value="Hantera visningar" disabled></a></li>
+				<li><a href="GetFilmsAdmin?id=0"><input type="button" value="Hantera filmer"></a></li>
+				<li><input type="button" value="Hantera visningar" disabled></li>
 			</ul>
 		</nav>
-		<article>
+		<article data-ng-app="avApp" data-ng-controller="theaterController">
 			<div>
-				<select>
-					<option value="1">Salong 1 Loke</option>
-					<option value="2">Salong 2 Emil</option>
-					<option value="3">Salong 3 Tyr</option>
-					<option value="4">Salong 4 Oden</option>
-					<option value="5">Salong 5 Thor</option>
-					<option value="6">Salong 6 Njord</option>
-					<option value="7">Salong 7 Freja</option>
-					<option value="8">Salong 8 Saga</option>
-					<option value="9">Salong 9 Glim</option>
-					<option value="10">Salong 10 Alva</option>
-					<option value="all">Alla</option>
+				<select data-ng-change="filter()" data-ng-model="selectedTheater" data-ng-init="-1">
+					<option value="-1">Alla</option>
+					<option value="{{theater.theaterId}}" data-ng-repeat="theater in theaters">
+					Salong {{theater.theaterId}}
+					</option>
 				</select>
 				
-				 <select size="25">
-					<option value="1">Rambo 17 2018-04-34 18:30 </option>
-					<option value="2">Nisse i brevlådan 2017-04-20 15:30</option>
-					<option value="3">Star Treck 27 2018-02-20 18:30</option>
-					<option value="4">Rambo 17 2018-04-31 18:30 </option>
-					<option value="5">Star Treck 27 2018-04-20 18:30</option>
-					<option value="6">Nisse i brevlådan 2017-04-27 15:30</option>
-					<option value="7">Rambo 17 2018-05-28 18:30</option>
-					<option value="8">Nisse i brevlådan 2017-04-02 15:30</option>
-				</select>
-				<input type="button" value="Ta Bort Visning">
+				<table>
+					<thead>
+						<tr>
+							<td>
+								Filmtitel
+							</td>
+							<td>
+								Salong
+							</td>
+							<td>
+								Datum
+							</td>
+							<td>
+								Start- och sluttid
+							</td>
+						</tr>
+					</thead>
+					<tr data-ng-repeat="viewing in viewings">
+						<td data-ng-click="selectViewing(viewing)">
+							{{viewing.film.title}}
+						</td>
+						<td data-ng-click="selectViewing(viewing)">
+							{{viewing.theaterId}}
+						</td>
+						<td data-ng-click="selectViewing(viewing)">
+							{{viewing.date}}
+						</td>
+						<td data-ng-click="selectViewing(viewing)">
+							Kl. {{viewing.startTime.time.hour}}:{{viewing.startTime.time.minute}} -
+							{{viewing.endTime.time.hour}}:{{viewing.endTime.time.minute}}
+						</td>
+						<td>
+							<button data-ng-click="remove(viewing.id)">Ta Bort</button>
+						</td>
+					</tr>
+				</table>
+				
 				<form>
-					<input type="submit" value="Lägg till Visning"><br>
+					<input type="button" value="Lägg till Visning" data-ng-click="add()"><br>
 					<label for="title">Filmtitel</label>
-					<input type="text" name="title"><br>
+					<input type="text" name="title" data-ng-model="filmTitle"><br>
 					<label for="theater">Salong</label>
-					<input type="number" name="theater"><br>
+					<input type="number" name="theater" data-ng-model="theaterId"><br>
 					<label for="date">Datum</label>
-					<input type="date" name="date"><br>
+					<input type="date" name="date" data-ng-model="date"><br>
 					<label for="start">Starttid</label>
-					<input type="time" name="start"><br>
+					<input type="time" name="start" data-ng-model="start"><br>
 					<label for="end">Sluttid</label>
-					<input type="time" name="end"><br>
+					<input type="time" name="end" data-ng-model="end"><br>
 					<label for="description">Beskrivning</label>
-					<input type="text" name="description"><br>
+					<input type="text" name="description" data-ng-model="description"><br>
 				</form>
 			</div>
 			<div id="film_info_div">
 				<div id="film_info">
-					<h3>Indiana Jöns	</h3>
-					<p>Komedi 2018</p>
-					<p>100min 15år</p>
-					<p>Inidana springer omkring och tar hand om pisker och nitar. <br>
-					Tjyvar och banditer försöker fånga Jöns och fastnar i lera.<br>
-					Allt är som vanligt Emils fel</p>
+					<h3>{{selectedViewing.film.title}}</h3>
+					<p>{{selectedViewing.film.genre}}, {{selectedViewing.film.year}}</p>
+					<p>{{selectedViewing.film.length.seconds / 60}} minuter, PGI {{selectedViewing.film.pgi}}</p>
+					<p>{{selectedViewing.film.description}}</p>
 				</div>
 				<div id="film_info">
-					<h3>Salong 2 Emil</h3>
-					<p>2018-05-20</p>
-					<p>18:00 - 21:00</p>
-					<p>Kuddar och hörslinga finns till alla.</p>
+					<h3>Salong {{selectedViewing.theaterId}}</h3>
+					<p>{{selectedViewing.date}}</p>
+					<p>{{selectedViewing.startTime.time.hour}}:{{selectedViewing.startTime.time.minute}} -
+					{{selectedViewing.endTime.time.hour}}:{{selectedViewing.endTime.time.minute}}</p>
 				</div>
-
-
 			</div>
 		</article>
 		<footer>
 			<p>&copy; 2017, Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg, All Rights Reserved.</p>
 		</footer>
 	</div>
+	
+	<!-- Load AngularJS version 1.6.2 -->
+	<script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+	<!-- Load the Java Script to use. -->
+	<script src="script/adminviewing.js"></script>
+	<!-- Warn about issues with javaScript. -->
+	<noscript>JavaScript unavailable or disabled!</noscript>
 </body>
 </html>
