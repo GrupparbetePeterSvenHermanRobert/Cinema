@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,19 +33,18 @@ public class GetViewingsAdminServlet extends HttpServlet {
      */
     public GetViewingsAdminServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cinema cinema = new Cinema();
-		
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json;characterset=UTF-8");
 			PrintWriter out = response.getWriter();
+			
+			Cinema cinema = new Cinema();
 			
 			List<Viewing> viewings = cinema.getAllViewings();
 			List<Theater> theaters = cinema.getAllTheaters();
@@ -70,9 +68,7 @@ public class GetViewingsAdminServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cinema cinema = new Cinema();
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		try {
 			request.setCharacterEncoding("UTF-8");
 			
@@ -90,7 +86,7 @@ public class GetViewingsAdminServlet extends HttpServlet {
 			else if(info.getMode().equalsIgnoreCase("remove"))
 				cin.removeViewing(info.getId());
 			
-		} catch (Exception e /*ClassNotFoundException | SQLException e*/) {
+		} catch (ClassNotFoundException | SQLException e) {
 			response.getWriter().append("Error: " + e.getMessage());
 		}
 	}

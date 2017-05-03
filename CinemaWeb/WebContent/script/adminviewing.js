@@ -53,13 +53,13 @@
 		}
 		
 		// Triggers if a http request to add a new viewing was successful.
-		var onAddComplete = function(response) {
+		var onAddComplete = function() {
 			// Call the servlet for data.
 			$http.get("GetViewingsAdmin").then(onComplete, onError);
 		}
 		
 		// Triggers whenever a http request to remove a viewing was successful.
-		var onRemoveComplete = function(response) {
+		var onRemoveComplete = function() {
 			// Remove the old data from the list.
 			$scope.viewingsList = $scope.viewingsList.filter(function(){
 				return viewing.theaterId != $scope.deletedId;
