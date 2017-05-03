@@ -19,6 +19,7 @@ import cinema.Film;
 import cinema.Theater;
 import cinema.Viewing;
 import storage.TheatersViewingsFilmsContainer;
+import storage.AddViewingPackage;
 
 /**
  * Servlet implementation class GetViewingsAdminServlet
@@ -74,7 +75,16 @@ public class GetViewingsAdminServlet extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			
-			// TODO receive JSON strings.
+			// receive JSON string.
+			String parameters = request.getReader().lines().collect(Collectors.joining());
+			
+			// Convert the JSON string.
+			Gson gson = new Gson();
+			AddViewingPackage info = gson.fromJson(parameters, AddiewingPackage.class);
+			
+			Cinema cin = new Cinema();
+			
+			cin.addViewing(id, info.getFilmtitle(), info.getStart(), info.getTheaterId())
 			
 		} catch (Exception e /*ClassNotFoundException | SQLException e*/) {
 			response.getWriter().append("Error: " + e.getMessage());

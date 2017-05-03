@@ -183,7 +183,7 @@ public class Cinema {
 			Film film = new Film(result.get(0));
 			LocalDateTime endTime = startTime.plusMinutes(film.getLength());
 			
-			query = "add_viewing(" + id + ", " + filmTitle + ", " + Timestamp.valueOf(startTime) + ", " + Timestamp.valueOf(endTime) + ", " + theaterId + ");";
+			query = "add_viewing(NULL , " + filmTitle + ", " + Timestamp.valueOf(startTime) + ", " + Timestamp.valueOf(endTime) + ", " + theaterId + ");";
 			sqlManager.callStoredProcedure(query);
 			
 			return true;
