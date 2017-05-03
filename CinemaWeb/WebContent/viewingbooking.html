@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width">
-	<meta charset="UTF-8">
-	<meta name="author" content="Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg">
-	<link rel="icon" type="image.png" href="media/cinema.png">
-	<link rel="stylesheet" href="src/style.css">
-	<link rel="stylesheet" href="src/navbar.css">
-	<title>Cinema Webbklient</title>
+<meta name="viewport" content="width=device-width">
+<meta charset="UTF-8">
+<meta name="author"
+	content="Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg">
+<link rel="icon" type="image.png" href="media/cinema.png">
+<link rel="stylesheet" href="src/style.css">
+<link rel="stylesheet" href="src/navbar.css">
+<title>Cinema Webbklient</title>
 </head>
 <body>
 	<div id="main_container">
@@ -18,7 +19,8 @@
 			<ul>
 				<li><a href="info.html"><input type="button" value="Info"></a></li>
 				<li><input type="button" value="Films & Tickets" disabled></li>
-				<li><a href="adminfilm.html"><input type="button" value="Admin"></a></li>
+				<li><a href="adminfilm.html"><input type="button"
+						value="Admin"></a></li>
 			</ul>
 		</nav>
 		<article>
@@ -39,26 +41,38 @@
 					<h3>Rambo 19</h3>
 					<p>Action 2018</p>
 					<p>100 15</p>
-					<p>En film om Rambo och hans underbara resa i underjorden.<br> 
-					Det är skjuta och döda, enhörningar och bubbelpooler.<br>
-					Allt är inlindat i ett romantiskt töcken, och allt är Emils fel</p>
+					<p>
+						En film om Rambo och hans underbara resa i underjorden.<br>
+						Det är skjuta och döda, enhörningar och bubbelpooler.<br>
+						Allt är inlindat i ett romantiskt töcken, och allt är Emils fel
+					</p>
 				</div>
 				<div id="film_info">
 					<h3>Salong 2</h3>
 					<p>2017-04-20</p>
 					<p>15:30 - 16:55</p>
-					<p>Man sitter bredvid varandra i rader framför en skärm. Det är många som sitter och ser film samtidigt.</p>
+					<p>Man sitter bredvid varandra i rader framför en skärm. Det är
+						många som sitter och ser film samtidigt.</p>
 				</div>
 				<div id="book_ticket">
 					<a href="filmbooking.html"><input type="button" value="Back"></a>
-					<a href="seatbooking.html"><input type="button" value="Boka Biljett"></a>
+					<a href="seatbooking.html"><input type="button"
+						value="Boka Biljett"></a>
 				</div>
 				<div></div>
 			</div>
 		</article>
 		<footer>
-			<p>&copy; 2017, Gustaf Peter Hultgren, Robert Fängström, Sven Andersson, Herman Dackenberg, All Rights Reserved.</p>
+			<p>&copy; 2017, Gustaf Peter Hultgren, Robert Fängström, Sven
+				Andersson, Herman Dackenberg, All Rights Reserved.</p>
 		</footer>
 	</div>
+
+	<script data-require="angular.js@1.6.2" data-semver="1.6.2"
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+	<!-- Load the Java Script to use. -->
+	<script src="script/viewingbooking.js"></script>
+	<!-- Warn about issues with javaScript. -->
+	<noscript>JavaScript unavailable or disabled!</noscript>
 </body>
 </html>
