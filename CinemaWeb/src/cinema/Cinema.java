@@ -169,9 +169,9 @@ public class Cinema {
 		return theaters;
 	}
 
-	// public String listViewings(int theatreId) {
-	//
-	// }
+//	public String listViewings(int theatreId) {
+//		
+//	}
 
 	public boolean addViewing(int id, String filmTitle, LocalDateTime startTime, int theaterId) throws ClassNotFoundException, SQLException {
 		String query = "get_film_by_title(" + "filmTitle" + ");";
