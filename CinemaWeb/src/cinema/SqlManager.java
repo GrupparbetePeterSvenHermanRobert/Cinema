@@ -19,7 +19,6 @@ public class SqlManager {
 	private static SqlManager instance = null;
 	/** The connection to the SQL database. **/
 	private Connection connection = null;
-	
 	/** A private default constructor. **/
 	private SqlManager() {
 		

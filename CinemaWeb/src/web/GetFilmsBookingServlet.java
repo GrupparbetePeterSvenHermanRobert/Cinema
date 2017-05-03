@@ -36,21 +36,19 @@ public class GetFilmsBookingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Cinema cinema= new Cinema();
-		String s=request.getParameter("id");
+		Cinema cinema = new Cinema();
+		String s = request.getParameter("id");
 		try {
-			int index=Integer.parseInt(s);
+			int index = Integer.parseInt(s);
 
-		List <Film> filmList= cinema.getFilms("title",true);
-		request.setAttribute("films",filmList);	
-		request.setAttribute("film",filmList.get(index));
+		List<Film> filmList = cinema.getFilms("title", true);
+		request.setAttribute("films", filmList);	
+		request.setAttribute("film", filmList.get(index));
 		
 		RequestDispatcher dist = request.getRequestDispatcher("/WEB-INF/filmbooking.jsp");
 		
-		if ( dist != null)
-		dist.forward(request, response);
-		
-		
+		if (dist != null)
+			dist.forward(request, response);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
