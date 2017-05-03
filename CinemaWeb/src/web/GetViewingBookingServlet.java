@@ -40,13 +40,24 @@ public class GetViewingBookingServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Cinema cinema= new Cinema();
 		String filmtitle = request.getParameter("title");
-
+		System.out.println(filmtitle);
+		
 		try {
 			Film film = cinema.getFilm(filmtitle);
+			if (film != null)
+				System.out.println("Inte null");
+			else
+				System.out.println("Film är null");
 			List<Viewing> viewings= cinema.getAllViewings();
 		
-			request.setAttribute("film",film);
+			for (Viewing v : viewings){
+				System.out.println(v.getDate() + " : " +v.getTime());
+				
+			}
+			/*request.setAttribute("film",film);
 			request.setAttribute("viewings",viewings);
+			*/
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
