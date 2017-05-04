@@ -14,7 +14,7 @@
 		}
 
 		// Call the servlet for data.
-		$http.get("GetFilmTheaterViewing").then(onComplete, onError);
+		$http.get("GetViewingBooking").then(onComplete, onError);
 
 	}
 

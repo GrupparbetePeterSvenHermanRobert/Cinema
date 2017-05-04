@@ -54,7 +54,7 @@ public class GetViewingBookingServlet extends HttpServlet {
 			/*if (film != null)
 				System.out.println("Inte null");
 			else
-				System.out.println("Film är null");
+				System.out.println("Film ï¿½r null");
 			List<Viewing> viewings= cinema.getAllViewings();
 		
 			for (Viewing v : viewings){
